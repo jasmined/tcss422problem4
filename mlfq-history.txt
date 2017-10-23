@@ -1,0 +1,378 @@
+Iteration: 1
+Making New PCBs: 
+contents: PID: 0, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 1, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 2, state: ready, priority: 0, PC: 0x0000, 
+
+Dequeueing PCB contents: PID: 0, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=1: P2->*
+Q 1: Count=1: P0->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Going to be running next contents: PID: 1, state: running, priority: 0, PC: 0x0003, 
+Next highest priority PCB contents: PID: 2, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 2
+Making New PCBs: 
+contents: PID: 3, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 4, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 5, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 6, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=4: P3->P4->P5->P6->*
+Q 1: Count=2: P0->P1->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 5, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 2, state: running, priority: 0, PC: 0x0060, 
+Next highest priority PCB contents: PID: 3, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 3
+Making New PCBs: 
+contents: PID: 7, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 8, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=5: P4->P5->P6->P7->P8->*
+Q 1: Count=3: P0->P1->P2->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 5, PRIORITY 0, PC 0
+PCB PID 7, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 3, state: running, priority: 0, PC: 0x00AB, 
+Next highest priority PCB contents: PID: 4, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 4
+Making New PCBs: 
+contents: PID: 9, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=5: P5->P6->P7->P8->P9->*
+Q 1: Count=3: P0->P1->P2->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 5, PRIORITY 0, PC 0
+PCB PID 7, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 4, state: running, priority: 0, PC: 0x00BF, 
+Next highest priority PCB contents: PID: 5, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 5
+Making New PCBs: 
+contents: PID: 10, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 11, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 12, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 13, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=8: P6->P7->P8->P9->P10->P11->P12->P13->*
+Q 1: Count=4: P0->P1->P2->P4->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 5, PRIORITY 0, PC 198
+PCB PID 7, PRIORITY 0, PC 0
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 5, state: running, priority: 0, PC: 0x00C6, 
+Next highest priority PCB contents: PID: 6, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 6
+Making New PCBs: 
+contents: PID: 14, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 15, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 16, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=10: P7->P8->P9->P10->P11->P12->P13->P14->P15->P16->*
+Q 1: Count=5: P0->P1->P2->P4->P5->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 5, PRIORITY 1, PC 234
+PCB PID 7, PRIORITY 0, PC 0
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 6, state: running, priority: 0, PC: 0x00EA, 
+Next highest priority PCB contents: PID: 7, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 7
+Making New PCBs: 
+contents: PID: 17, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 19, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=12: P8->P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->*
+Q 1: Count=6: P0->P1->P2->P4->P5->P6->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 5, PRIORITY 1, PC 234
+PCB PID 7, PRIORITY 0, PC 314
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 7, state: running, priority: 0, PC: 0x013A, 
+Next highest priority PCB contents: PID: 8, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 8
+Making New PCBs: 
+contents: PID: 20, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 21, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=13: P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->*
+Q 1: Count=7: P0->P1->P2->P4->P5->P6->P7->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 5, PRIORITY 1, PC 234
+PCB PID 7, PRIORITY 1, PC 347
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 8, state: running, priority: 0, PC: 0x015B, 
+Next highest priority PCB contents: PID: 9, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 9
+Making New PCBs: 
+contents: PID: 22, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 23, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 24, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 25, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=16: P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->*
+Q 1: Count=8: P0->P1->P2->P4->P5->P6->P7->P8->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 5, PRIORITY 1, PC 234
+PCB PID 7, PRIORITY 1, PC 347
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 9, state: running, priority: 0, PC: 0x015C, 
+Next highest priority PCB contents: PID: 10, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 10
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 26, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 27, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=25: P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P0->P1->P2->P4->P5->P6->P7->P8->P26->P27->*
+Q 1: Count=1: P9->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 5, PRIORITY 0, PC 234
+PCB PID 7, PRIORITY 0, PC 347
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 10, state: running, priority: 0, PC: 0x0179, 
+Next highest priority PCB contents: PID: 11, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 11
+Making New PCBs: 
+contents: PID: 28, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 29, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 30, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 31, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=28: P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P0->P1->P2->P4->P5->P6->P7->P8->P26->P27->P28->P29->P30->P31->*
+Q 1: Count=1: P9->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 5, PRIORITY 0, PC 234
+PCB PID 7, PRIORITY 0, PC 347
+PCB PID 11, PRIORITY 0, PC 430
+PCB PID 12, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 11, state: running, priority: 0, PC: 0x01AE, 
+Next highest priority PCB contents: PID: 12, state: ready, priority: 0, PC: 0x0000, 
+
+
+Reached max PCBs, ending Scheduler.
