@@ -379,8 +379,8 @@ int isPrivileged(PCB pcb) {
 
 
 void main () {
-	FILE *f;
-    f = freopen("mlfq-history.txt", "w", stdout);
+	// FILE *f;
+    // f = freopen("mlfq-history.txt", "w", stdout);
 	
 	setvbuf(stdout, NULL, _IONBF, 0);
 	time_t t;

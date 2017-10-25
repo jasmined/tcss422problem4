@@ -49,6 +49,13 @@ typedef struct pcb {
     // if process is blocked, which queue it is in
     CPU_context_p context; // set of cpu registers
     // other items to be added as needed.
+
+	unsigned int max_pc;
+	long int creation;
+	long int termination;
+	unsigned int term_count;
+	unsigned int io_trap_1[4];
+	unsigned int io_trap_2[4];
 } PCB_s;
 
 typedef PCB_s * PCB;

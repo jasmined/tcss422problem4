@@ -53,6 +53,32 @@ PCB PCB_create() {
             new_pcb = NULL;
         }
     }
+	
+	int i = 0;
+	
+	new_pcb->io_trap_1[i] = (rand() % 15) * 2;
+	new_pcb->io_trap_2[i] = (rand() % 15) * 2;
+	
+	
+	for (i = 1; i < 4; i++) {
+		new_pcb->io_trap_1[i] = new_pcb->io_trap_1[i - 1] + (rand() % 30) * 5;
+		new_pcb->io_trap_2[i] = new_pcb->io_trap_1[i - 1] + (rand() % 30) * 5;
+	}
+	printf("IO TRAP 1: ");
+		for (i = 0; i < 4; i++) {
+		new_pcb->io_trap_1[i] = new_pcb->io_trap_1[i - 1] + (rand() % 30) * 5;
+		new_pcb->io_trap_2[i] = new_pcb->io_trap_1[i - 1] + (rand() % 30) * 5;
+		printf("%d ", new_pcb->io_trap_1[i]);
+	}
+	printf("\n");
+	printf("IO TRAP 2: ");
+		for (i = 0; i < 4; i++) {
+
+		printf("%d ", new_pcb->io_trap_2[i]);
+	}
+	
+	printf("\n");
+	
     return new_pcb;
 }
 
