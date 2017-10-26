@@ -17,6 +17,9 @@
 #define RANDOM_VALUE 101
 #define TOTAL_TERMINATED 10
 #define MAX_PRIVILEGE 4
+#define TIMER_INT 1
+#define IO_TRAP 2
+#define IO_INT 3
 
 unsigned int sysstack;
 int switchCalls;
@@ -118,6 +121,20 @@ int makePCBList (Scheduler theScheduler) {
 	}
 	
 	return newPCBCount;
+}
+
+int timerInt() {
+	return 0;
+}
+
+
+int ioTrap(PCB running) {
+	return 0;
+}
+
+
+int ioInt() {
+	return 0;
 }
 
 
@@ -261,8 +278,8 @@ void resetReadyQueue (ReadyQueue queue) {
 	interrupted PCBs state to Ready and enqueue it into the Ready queue. It then
 	calls the dispatcher to get the next PCB in the queue.
 */
-void scheduling (int isTimer, Scheduler theScheduler) {
-	if (isTimer && theScheduler->running->state != STATE_HALT) {
+void scheduling (int interrupt_type, Scheduler theScheduler) {
+	if (interrupt_type == TIMER_INT && theScheduler->running->state != STATE_HALT) {
 		theScheduler->interrupted->state = STATE_READY;
 		if (theScheduler->interrupted->priority < (NUM_PRIORITIES - 1)) {
 			theScheduler->interrupted->priority++;
@@ -278,6 +295,10 @@ void scheduling (int isTimer, Scheduler theScheduler) {
 			privileged[index] = theScheduler->running;
 		}
 		
+		
+	} else if (interrupt_type == IO_TRAP && theScheduler->running->state != STATE_HALT) {
+		
+	} else if (interrupt_type == IO_INT && theScheduler->running->state != STATE_HALT) {
 		
 	}
 	

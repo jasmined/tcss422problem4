@@ -34,6 +34,14 @@ void initialize_data(/* in-out */ PCB pcb) {
   pcb->context->r5 = 0;
   pcb->context->r6 = 0;
   pcb->context->r7 = 0;
+  
+  pcb->max_pc = createMaxPC();
+  pcb->creation = 0;
+  pcb->termination = 0;
+  pcb->term_count = 0;
+  
+  populateIOTrap(pcb, 1);
+  populateIOTrap(pcb, 2);
 }
 
 /*
@@ -54,32 +62,87 @@ PCB PCB_create() {
         }
     }
 	
-	int i = 0;
-	
-	new_pcb->io_trap_1[i] = (rand() % 15) * 2;
-	new_pcb->io_trap_2[i] = (rand() % 15) * 2;
-	
-	
-	for (i = 1; i < 4; i++) {
-		new_pcb->io_trap_1[i] = new_pcb->io_trap_1[i - 1] + (rand() % 30) * 5;
-		new_pcb->io_trap_2[i] = new_pcb->io_trap_1[i - 1] + (rand() % 30) * 5;
-	}
-	printf("IO TRAP 1: ");
-		for (i = 0; i < 4; i++) {
-		new_pcb->io_trap_1[i] = new_pcb->io_trap_1[i - 1] + (rand() % 30) * 5;
-		new_pcb->io_trap_2[i] = new_pcb->io_trap_1[i - 1] + (rand() % 30) * 5;
-		printf("%d ", new_pcb->io_trap_1[i]);
-	}
-	printf("\n");
-	printf("IO TRAP 2: ");
-		for (i = 0; i < 4; i++) {
-
-		printf("%d ", new_pcb->io_trap_2[i]);
-	}
-	
-	printf("\n");
-	
     return new_pcb;
+}
+
+unsigned int createMaxPC() {
+
+	int rand_max_pc = rand() % MAX_PCB;
+	
+	if (rand_max_pc < MIN_PCB) {
+		rand_max_pc += rand() % MIN_PCB;
+	}
+	
+	// printf("\nRAND MAC PC: %d\n", rand_max_pc);
+	
+	return rand_max_pc;
+	
+}
+
+void populateIOTrap(PCB pcb, int io_array) {
+	
+	int i = 0;
+	int rand_val = 0;
+	
+	for (i; i < 4; i++) {
+		rand_val = rand() % pcb->max_pc;
+	
+		// if random value already exists in I/O trap, 
+		// increase value
+		while (ioTrapValueExists(pcb, rand_val)) {
+			rand_val++;
+		}
+		
+		
+		if (io_array == 1) {
+			pcb->io_trap_1[i] = rand_val;		
+		} else {
+			pcb->io_trap_2[i] = rand_val;
+		}
+		
+	}
+	
+	
+	// TODO: Remove later. Just for testing purposes.
+	if (io_array == 1) {
+		printf("\n");
+		printf("IO TRAP 1: ");
+	
+		for (i = 0; i < 4; i++) {
+			printf("%d ", pcb->io_trap_1[i]);
+		}
+		printf("\n");
+		
+	} else {
+		
+		printf("IO TRAP 2: ");
+		for (i = 0; i < 4; i++) {
+			printf("%d ", pcb->io_trap_2[i]);
+		}
+		
+		printf("\n");
+			
+	}
+	
+
+	
+
+	
+}
+
+int ioTrapValueExists(PCB pcb, int rand) {
+	
+	for (int i = 0; i < 4; i++) {
+		if (rand == pcb->io_trap_1[i] || rand == pcb->io_trap_2[i]) {
+			return 1;
+			break;
+			
+		}
+		
+	}
+	
+	return 0;
+	
 }
 
 /*
@@ -194,40 +257,3 @@ void toStringCPUContext(CPU_context_p context) {
 	printf("r7:  %d\r\n", context->r7);
 }
  
-/*char * toStringPCB(/* in  PCB the_pcb, int showAll) {
-    /* Oversized buffer for creating the initial version of the string. 
-    char temp_buf[1000];
-    unsigned int cpos = 0;
-
-	if (showAll) {
-		cpos += sprintf(temp_buf, "contents: PID: %d, Priority: %d, state: %u, "
-				"memloc: %p size: %u channel: %X ",
-				the_pcb->pid, the_pcb->priority, the_pcb->state,
-				the_pcb->mem, the_pcb->size, the_pcb->channel_no);
-
-		/* Append the context: 
-		sprintf(temp_buf + cpos, "PC: 0x%04X, IR: %04X, "
-				"r0: %04X, r1: %04X, r2: %04X, r3: %04X, r4: %04X, "
-				"r5: %04X, r6: %04X, r7: %04X",
-				the_pcb->context->pc, the_pcb->context->ir, the_pcb->context->r0,
-				the_pcb->context->r1, the_pcb->context->r2, the_pcb->context->r3,
-				the_pcb->context->r4, the_pcb->context->r5, the_pcb->context->r6,
-				the_pcb->context->r7);
-	} else {
-		cpos += sprintf(temp_buf, "contents: PID: %d, Priority: %d, state: %u, "
-				"memloc: %p ", the_pcb->pid, the_pcb->priority, the_pcb->state, the_pcb->mem);
-
-		/* Append the context: 
-		sprintf(temp_buf + cpos, "PC: 0x%04X", the_pcb->context->pc);
-	}
-	
-    /* A string that can be returned and -not- go out of scope. 
-    char * ret_val = malloc(sizeof(char) * (strlen(temp_buf) + 1));
-
-    /* Make sure ret_val is not null before populating it. 
-    if (ret_val != NULL) {
-        strcpy(ret_val, temp_buf);
-    }
-
-    return ret_val;
-}*/

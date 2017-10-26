@@ -9,6 +9,8 @@
 #define PCB_H
 
 #define NUM_PRIORITIES 16
+#define MAX_PCB 5000
+#define MIN_PCB 500
 
 /* The CPU state, values named as in the LC-3 processor. */
 typedef struct cpu_context {
@@ -51,8 +53,8 @@ typedef struct pcb {
     // other items to be added as needed.
 
 	unsigned int max_pc;
-	long int creation;
-	long int termination;
+	unsigned int creation;
+	unsigned int termination;
 	unsigned int term_count;
 	unsigned int io_trap_1[4];
 	unsigned int io_trap_2[4];
@@ -114,5 +116,11 @@ void PCB_assign_priority(/* in */ PCB pcb, /* in */ unsigned int priority);
 void toStringPCB(/* in */ PCB pcb, int showCpu);
 
 void toStringCPUContext(CPU_context_p context);
+
+unsigned int createMaxPC();
+
+void populateIOTrap(PCB pcb, int io_array);
+
+int ioTrapValueExists(PCB pcb, int rand);
 
 #endif
