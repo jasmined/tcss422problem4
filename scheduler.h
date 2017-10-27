@@ -101,6 +101,6 @@ int checkTimerInt();
 
 int checkIoTrap(PCB running);
 
-int checkIoInt(PCB blocked);
+int checkIoInt(Scheduler theScheduler);
 
 #endif

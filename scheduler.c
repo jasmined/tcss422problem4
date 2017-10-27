@@ -25,8 +25,6 @@ int terminated = 0;
 int quantumSize;
 int quantum_count;
 
-int io_timer = 0;
-
 int io_trap_num = 0;
 
 /*
@@ -83,7 +81,6 @@ void mainLoop() {
 		
 		printf("Iteration: %d\r\n", iterationCount);
 		thisScheduler->running->context->pc++;
-		thisScheduler->running->term_count++; // ??
 		
 		if (checkTermination(thisScheduler) == 1) {
 			terminate(thisScheduler);	
@@ -96,7 +93,7 @@ void mainLoop() {
 			printSchedulerState(thisScheduler);
 		} 
 		
-		if (checkIoInt(thisScheduler->interrupted) == 1) {
+		if (checkIoInt(thisScheduler) == 1) {
 			printf("====================== I/O INTERRUPT ======================\n");
 			pseudoISR(thisScheduler, IO_INT);
 		}
@@ -106,11 +103,10 @@ void mainLoop() {
 			pseudoISR(thisScheduler, IO_TRAP);
 		}
 		
-
-		
 		
 		if (thisScheduler->running->context->pc == thisScheduler->running->max_pc) {
 			thisScheduler->running->context->pc = 0;
+			thisScheduler->running->term_count++;
 		}
 		
 		
@@ -229,15 +225,27 @@ int checkIoTrap(PCB running) {
 	Checks if an I/O request has completed. If so, an interrupt is thrown and
 	the psuedoISR will run. If not, it just returns 0.
 */
-int checkIoInt(PCB blocked) {
+int checkIoInt(Scheduler theScheduler) {
 	
-	// ??
-	if (io_timer == blocked->waiting_timer) {
-		return 1;
-	} else {
-		io_timer++;
+	if (q_peek(theScheduler->waiting_io_1) != NULL) {
+		if (q_peek(theScheduler->waiting_io_1)->waiting_timer == 0) {
+			return 1;
+		} else {
+			q_peek(theScheduler->waiting_io_2)->waiting_timer--;
 		return 0;
+		}
 	}
+	
+	
+	
+	if (q_peek(theScheduler->waiting_io_2) != NULL) {
+		if (q_peek(theScheduler->waiting_io_2)->waiting_timer == 0) {
+			return 1;
+		} else {
+			q_peek(theScheduler->waiting_io_2)->waiting_timer--;
+			return 0;
+		}
+	} 
 	
 }
 
@@ -425,12 +433,22 @@ void scheduling (int interrupt_type, Scheduler theScheduler) {
 		
 		if (io_trap_num == 1) {
 			q_enqueue(theScheduler->waiting_io_1, theScheduler->running);
+			theScheduler->running->waiting_timer = rand() % (quantumSize * 5);
 		} else if (io_trap_num == 2) {
 			q_enqueue(theScheduler->waiting_io_2, theScheduler->running);
+			theScheduler->running->waiting_timer = rand() % (quantumSize * 5);
 		}
 			
 	} else if (interrupt_type == IO_INT && theScheduler->running->state != STATE_HALT) {
-		
+		if (io_trap_num == 1) {
+			PCB pcb = q_dequeue(theScheduler->waiting_io_1);
+			pcb->state = STATE_READY;
+			pq_enqueue(theScheduler->ready, pcb);
+		} else if (io_trap_num == 2) {
+			PCB pcb = q_dequeue(theScheduler->waiting_io_2);
+			pcb->state = STATE_READY;
+			pq_enqueue(theScheduler->ready, pcb);
+		}
 	}
 	
 	if (theScheduler->running->state == STATE_HALT) {
@@ -544,6 +562,6 @@ void main () {
 	switchCalls = 0;
 	quantumSize = 0;
 	quantum_count = 0;
-	timer();
-	// mainLoop();
+	// timer();
+	mainLoop();
 }

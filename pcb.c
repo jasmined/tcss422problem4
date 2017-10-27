@@ -66,6 +66,9 @@ PCB PCB_create() {
     return new_pcb;
 }
 
+/*
+	Creates a max PC for a running process.
+*/
 unsigned int createMaxPC() {
 
 	int rand_max_pc = rand() % MAX_PCB;
