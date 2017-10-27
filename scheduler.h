@@ -34,11 +34,12 @@
 
 #define MAX_VALUE_PRIVILEGED 15
 #define RANDOM_VALUE 101
-#define TOTAL_TERMINATED 10
+#define TOTAL_TERMINATED 4
 #define MAX_PRIVILEGE 4
 #define TIMER_INT 1
 #define IO_TRAP 2
 #define IO_INT 3
+#define TRAP_COUNT 4
 
 
 //structs
@@ -54,6 +55,8 @@ typedef struct scheduler {
 	ReadyQueue created;
 	ReadyQueue killed;
 	ReadyQueue blocked;
+	ReadyQueue waiting_io_1;
+	ReadyQueue waiting_io_2;
 	PriorityQueue ready;
 	PCB running;
 	PCB interrupted;
@@ -87,6 +90,8 @@ void schedulerDeconstructor (Scheduler);
 int isPrivileged(PCB pcb);
 
 void terminate(Scheduler theScheduler);
+
+int checkTermination(Scheduler theScheduler);
 
 void resetMLFQ(Scheduler theScheduler);
 

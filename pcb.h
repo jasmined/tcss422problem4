@@ -58,6 +58,7 @@ typedef struct pcb {
 	unsigned int term_count;
 	unsigned int io_trap_1[4];
 	unsigned int io_trap_2[4];
+	unsigned int waiting_timer;
 } PCB_s;
 
 typedef PCB_s * PCB;

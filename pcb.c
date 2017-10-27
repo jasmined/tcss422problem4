@@ -39,6 +39,7 @@ void initialize_data(/* in-out */ PCB pcb) {
   pcb->creation = 0;
   pcb->termination = 0;
   pcb->term_count = 0;
+  pcb->waiting_timer = -1;
   
   populateIOTrap(pcb, 1);
   populateIOTrap(pcb, 2);
