@@ -27,8 +27,7 @@ int quantum_count;
 
 int io_timer = 0;
 
-int io_trap_1_status = 0;
-int io_trap_2_status = 0;
+int io_trap_num = 0;
 
 /*
 	This function is our main loop. It creates a Scheduler object and follows the
@@ -97,7 +96,7 @@ void mainLoop() {
 			printSchedulerState(thisScheduler);
 		} 
 		
-		if (checkIoTrap(thisScheduler->running) == 1) {
+		if (checkIoTrap(thisScheduler->running) > 0) {
 			pseudoISR(thisScheduler, IO_TRAP);
 		}
 		
@@ -205,14 +204,14 @@ int checkIoTrap(PCB running) {
 	
 	for (i; i < TRAP_COUNT; i++) {
 		if (running->context->pc == running->io_trap_1[i]) {
-			io_trap_1_status = 1;
+			io_trap_num = 1;
 			return 1;
 			break;
 		}
 		
 		if (running->context->pc == running->io_trap_2[i]) {
-			io_trap_2_status = 1;
-			return 1;
+			io_trap_num = 2;
+			return 2;
 			break;
 		}
 	}
@@ -416,18 +415,16 @@ void scheduling (int interrupt_type, Scheduler theScheduler) {
 		}
 		
 		
-	} else if (interrupt_type == IO_TRAP && io_trap_1_status == 1 && theScheduler->running->state != STATE_HALT) {
+	} else if (interrupt_type == IO_TRAP && theScheduler->running->state != STATE_HALT) {
 		theScheduler->running->state = STATE_WAIT;
 		theScheduler->running->waiting_timer = quantumSize * (rand() % 3 + 1) + rand() % 100;
-		q_enqueue(theScheduler->waiting_io_1, theScheduler->running);
 		
-		
-	} else if (interrupt_type == IO_TRAP && io_trap_2_status == 1 && theScheduler->running->state != STATE_HALT) {
-		theScheduler->running->state = STATE_WAIT;
-		theScheduler->running->waiting_timer = quantumSize * (rand() % 3 + 1) + rand() % 100;
-		q_enqueue(theScheduler->waiting_io_2, theScheduler->running);
-		
-		
+		if (io_trap_num == 1) {
+			q_enqueue(theScheduler->waiting_io_1, theScheduler->running);
+		} else if (io_trap_num == 2) {
+			q_enqueue(theScheduler->waiting_io_2, theScheduler->running);
+		}
+			
 	} else if (interrupt_type == IO_INT && theScheduler->running->state != STATE_HALT) {
 		
 	}
