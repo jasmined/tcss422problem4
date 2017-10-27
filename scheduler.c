@@ -13,13 +13,7 @@
 
 #include "scheduler.h"
 
-#define MAX_VALUE_PRIVILEGED 15
-#define RANDOM_VALUE 101
-#define TOTAL_TERMINATED 10
-#define MAX_PRIVILEGE 4
-#define TIMER_INT 1
-#define IO_TRAP 2
-#define IO_INT 3
+
 
 unsigned int sysstack;
 int switchCalls;
@@ -57,19 +51,58 @@ void timer () {
 			pc = runProcess(pc, currQuantumSize);
 			sysstack = pc;
 			terminate(thisScheduler); 
-			pseudoISR(thisScheduler);
+			pseudoISR(thisScheduler, TIMER_INT);
 			pc = thisScheduler->running->context->pc;
 		}
 		
 		printSchedulerState(thisScheduler);
 		iterationCount++;
-		/*if (count == stop) {
-			break;
-		} else {
-			count++;
-		}*/
 		
 	}
+	schedulerDeconstructor(thisScheduler);
+}
+
+void mainLoop() {
+	
+	int totalProcesses = 0, iterationCount = 1;
+	Scheduler thisScheduler = schedulerConstructor();
+	totalProcesses += makePCBList(thisScheduler);
+
+	
+	for (;;) {
+		
+		printf("Iteration: %d\r\n", iterationCount);
+		thisScheduler->running->context->pc;
+	
+		if (checkTimerInt() == 1) {
+			pseudoISR(thisScheduler, TIMER_INT);
+			iterationCount++;
+			totalProcesses += makePCBList(thisScheduler);	
+			printSchedulerState(thisScheduler);
+		} else if (checkIoTrap(thisScheduler->running) == 1) {
+			pseudoISR(thisScheduler, IO_TRAP);
+		} else if (checkIoTrap(thisScheduler->interrupted) == 1) {
+			pseudoISR(thisScheduler, IO_TRAP);
+		}
+		
+		
+		if (thisScheduler->running->context->pc == thisScheduler->running->max_pc) {
+			thisScheduler->running->context->pc = 0;
+		}
+		
+		
+		if (totalProcesses >= MAX_PCB_TOTAL) {
+			printf("Reached max PCBs, ending Scheduler.\r\n");
+			break;
+		}
+		
+		printf("Iteration: %d\r\n", iterationCount);
+		if (!(iterationCount % RESET_COUNT)) {
+			printf("\r\nRESETTING MLFQ\r\n");
+			resetMLFQ(thisScheduler);
+		}
+	}
+	
 	schedulerDeconstructor(thisScheduler);
 }
 
@@ -123,17 +156,17 @@ int makePCBList (Scheduler theScheduler) {
 	return newPCBCount;
 }
 
-int timerInt() {
+int checkTimerInt() {
 	return 0;
 }
 
 
-int ioTrap(PCB running) {
+int checkIoTrap(PCB running) {
 	return 0;
 }
 
 
-int ioInt() {
+int checkIoInt(PCB blocked) {
 	return 0;
 }
 
@@ -177,14 +210,14 @@ void terminate(Scheduler theScheduler) {
 	It handles changing the running PCB state to Interrupted, moving the running
 	PCB to interrupted, saving the PC to the SysStack and calling the scheduler.
 */
-void pseudoISR (Scheduler theScheduler) {
+void pseudoISR (Scheduler theScheduler, int interrupt_type) {
 	if (theScheduler->running->state != STATE_HALT) {
 		theScheduler->running->state = STATE_INT;
 		theScheduler->interrupted = theScheduler->running;
 		theScheduler->running->context->pc = sysstack;
 	}
 
-	scheduling(IS_TIMER, theScheduler);
+	scheduling(interrupt_type, theScheduler);
 	pseudoIRET(theScheduler);
 }
 
@@ -410,4 +443,5 @@ void main () {
 	switchCalls = 0;
 	currQuantumSize = 0;
 	timer();
+	// mainLoop();
 }

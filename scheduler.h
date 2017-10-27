@@ -32,6 +32,14 @@
 #define SWITCH_CALLS 4
 #define RESET_COUNT 10
 
+#define MAX_VALUE_PRIVILEGED 15
+#define RANDOM_VALUE 101
+#define TOTAL_TERMINATED 10
+#define MAX_PRIVILEGE 4
+#define TIMER_INT 1
+#define IO_TRAP 2
+#define IO_INT 3
+
 
 //structs
 /*typedef struct created_list_node {
@@ -62,7 +70,7 @@ int makePCBList (Scheduler);
 
 unsigned int runProcess (unsigned int, int);
 
-void pseudoISR (Scheduler);
+void pseudoISR (Scheduler, int interrupt_type);
 
 void scheduling (int, Scheduler);
 
@@ -83,5 +91,11 @@ void terminate(Scheduler theScheduler);
 void resetMLFQ(Scheduler theScheduler);
 
 void resetReadyQueue (ReadyQueue queue);
+
+int checkTimerInt();
+
+int checkIoTrap(PCB running);
+
+int checkIoInt(PCB blocked);
 
 #endif
