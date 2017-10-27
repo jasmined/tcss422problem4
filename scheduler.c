@@ -96,13 +96,17 @@ void mainLoop() {
 			printSchedulerState(thisScheduler);
 		} 
 		
+		if (checkIoInt(thisScheduler->interrupted) == 1) {
+			printf("====================== I/O INTERRUPT ======================\n");
+			pseudoISR(thisScheduler, IO_INT);
+		}
+		
 		if (checkIoTrap(thisScheduler->running) > 0) {
+			printf("====================== I/O TRAP ======================\n");
 			pseudoISR(thisScheduler, IO_TRAP);
 		}
 		
-		if (checkIoInt(thisScheduler->interrupted) == 1) {
-			pseudoISR(thisScheduler, IO_INT);
-		}
+
 		
 		
 		if (thisScheduler->running->context->pc == thisScheduler->running->max_pc) {
@@ -169,7 +173,7 @@ int makePCBList (Scheduler theScheduler) {
 			theScheduler->running = pq_dequeue(theScheduler->ready);
 			theScheduler->running->state = STATE_RUNNING;
 			theScheduler->isNew = 0;
-			// quantumSize = theScheduler->ready[0]->quantum_size;
+			quantumSize = theScheduler->ready->queues[0]->quantum_size;
 		}
 	}
 	
