@@ -4,6 +4,13 @@
  * Authors: Keegan Wantz, Carter Odem, Connor Lundberg
  * TCSS 422.
  */
+ 
+ 
+ /*
+	- Fixed terminate count and made sure to randomize it upon creation.
+ 
+ 
+ */
 
 #include"pcb.h"
 #include<stdio.h>
@@ -38,6 +45,7 @@ void initialize_data(/* in-out */ PCB pcb) {
   pcb->max_pc = createMaxPC();
   pcb->creation = 0;
   pcb->termination = 0;
+  pcb->terminate = rand() % MAX_TERM_COUNT;
   pcb->term_count = 0;
   pcb->waiting_timer = -1;
   
@@ -155,8 +163,10 @@ int ioTrapValueExists(PCB pcb, int rand) {
  * Arguments: pcb: the pcb to free.
  */
 void PCB_destroy(/* in-out */ PCB pcb) {
-	  free(pcb->context);
-	  free(pcb);// that thing
+	free(pcb->context);
+	free(pcb);// that thing
+
+	  
 }
 
 /*

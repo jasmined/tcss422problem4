@@ -1,26 +1,24 @@
 Iteration: 1
-IO TRAP 1: 220
- IO TRAP 2: 331
-IO TRAP 1: 508
- IO TRAP 2: 352
-IO TRAP 1: 778
- IO TRAP 2: 610
-IO TRAP 1: 7
- IO TRAP 2: 208
-IO TRAP 1: 166
- IO TRAP 2: 70
-IO TRAP 1: 250
- IO TRAP 2: 247
+
+IO TRAP 1: 409 1864 2020 1341 
+IO TRAP 2: 2019 2170 1033 1560 
+
+IO TRAP 1: 268 171 392 65 
+IO TRAP 2: 1123 142 504 1530 
+
+IO TRAP 1: 634 282 323 629 
+IO TRAP 2: 180 559 305 317 
 Making New PCBs: 
 contents: PID: 0, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 1, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 2, state: ready, priority: 0, PC: 0x0000, 
 
 Dequeueing PCB contents: PID: 0, state: ready, priority: 0, PC: 0x0000, 
 
 MLFQ state at iteration end
 
-Q 0: Count=0: 
-Q 1: Count=1: P0->*
+Q 0: Count=1: P2->*
+Q 1: Count=0: 
 Q 2: Count=0: 
 Q 3: Count=0: 
 Q 4: Count=0: 
@@ -37,430 +35,34 @@ Q14: Count=0:
 Q15: Count=0: 
 
 
-PCB PID 1, PRIORITY 0, PC 2
 
-Going to be running next contents: PID: 1, state: running, priority: 0, PC: 0x0002, 
-Next highest priority PCB contents: PID: 0, state: ready, priority: 1, PC: 0x0002, 
+Going to be running next contents: PID: 1, state: running, priority: 0, PC: 0x0003, 
+Next highest priority PCB contents: PID: 2, state: ready, priority: 0, PC: 0x0000, 
 
 
 Iteration: 2
+
+IO TRAP 1: 939 1315 728 2955 
+IO TRAP 2: 894 2396 1850 53 
+
+IO TRAP 1: 2870 2900 1456 2227 
+IO TRAP 2: 2782 815 1231 2620 
+
+IO TRAP 1: 303 56 305 1021 
+IO TRAP 2: 946 1023 858 357 
+
+IO TRAP 1: 1308 1677 446 927 
+IO TRAP 2: 310 731 879 1513 
 Making New PCBs: 
-MLFQ state at iteration end
-
-Q 0: Count=0: 
-Q 1: Count=1: P1->*
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 1, PRIORITY 1, PC 33
-
-Going to be running next contents: PID: 0, state: running, priority: 1, PC: 0x0021, 
-Next highest priority PCB contents: PID: 1, state: ready, priority: 1, PC: 0x0021, 
-
-
-Iteration: 3
-IO TRAP 1: 227
- IO TRAP 2: 197
-IO TRAP 1: 518
- IO TRAP 2: 380
-IO TRAP 1: 815
- IO TRAP 2: 812
-IO TRAP 1: 197
- IO TRAP 2: 413
-IO TRAP 1: 293
- IO TRAP 2: 380
-IO TRAP 1: 416
- IO TRAP 2: 569
-IO TRAP 1: 231
- IO TRAP 2: 33
-IO TRAP 1: 273
- IO TRAP 2: 279
-IO TRAP 1: 297
- IO TRAP 2: 396
-Making New PCBs: 
-contents: PID: 2, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 3, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 4, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=2: P3->P4->*
-Q 1: Count=1: P1->*
-Q 2: Count=1: P0->*
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 1, PRIORITY 1, PC 33
-PCB PID 3, PRIORITY 0, PC 0
-PCB PID 4, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 2, state: running, priority: 0, PC: 0x0031, 
-Next highest priority PCB contents: PID: 3, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 4
-IO TRAP 1: 179
- IO TRAP 2: 260
-IO TRAP 1: 368
- IO TRAP 2: 308
-IO TRAP 1: 374
- IO TRAP 2: 524
-IO TRAP 1: 289
- IO TRAP 2: 238
-IO TRAP 1: 370
- IO TRAP 2: 481
-IO TRAP 1: 541
- IO TRAP 2: 550
-Making New PCBs: 
 contents: PID: 5, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 6, state: ready, priority: 0, PC: 0x0000, 
 
 MLFQ state at iteration end
 
-Q 0: Count=3: P4->P5->P6->*
-Q 1: Count=2: P1->P2->*
-Q 2: Count=1: P0->*
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 1, PRIORITY 1, PC 33
-PCB PID 3, PRIORITY 0, PC 65
-PCB PID 4, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 3, state: running, priority: 0, PC: 0x0041, 
-Next highest priority PCB contents: PID: 4, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 5
-IO TRAP 1: 326
- IO TRAP 2: 203
-IO TRAP 1: 338
- IO TRAP 2: 374
-IO TRAP 1: 569
- IO TRAP 2: 596
-Making New PCBs: 
-contents: PID: 7, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=3: P5->P6->P7->*
-Q 1: Count=3: P1->P2->P3->*
-Q 2: Count=1: P0->*
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 1, PRIORITY 1, PC 33
-PCB PID 3, PRIORITY 1, PC 159
-PCB PID 4, PRIORITY 0, PC 159
-
-Going to be running next contents: PID: 4, state: running, priority: 0, PC: 0x009F, 
-Next highest priority PCB contents: PID: 5, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 6
-IO TRAP 1: 180
- IO TRAP 2: 237
-IO TRAP 1: 396
- IO TRAP 2: 258
-IO TRAP 1: 561
- IO TRAP 2: 687
-IO TRAP 1: 268
- IO TRAP 2: 331
-IO TRAP 1: 307
- IO TRAP 2: 283
-IO TRAP 1: 316
- IO TRAP 2: 385
-IO TRAP 1: 303
- IO TRAP 2: 96
-IO TRAP 1: 309
- IO TRAP 2: 450
-IO TRAP 1: 495
- IO TRAP 2: 594
-IO TRAP 1: 377
- IO TRAP 2: 389
-IO TRAP 1: 446
- IO TRAP 2: 518
-IO TRAP 1: 452
- IO TRAP 2: 674
-Making New PCBs: 
-contents: PID: 8, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 9, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 10, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 11, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=6: P6->P7->P8->P9->P10->P11->*
-Q 1: Count=4: P1->P2->P3->P4->*
-Q 2: Count=1: P0->*
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 1, PRIORITY 1, PC 33
-PCB PID 3, PRIORITY 1, PC 159
-PCB PID 4, PRIORITY 1, PC 226
-
-Going to be running next contents: PID: 5, state: running, priority: 0, PC: 0x00E2, 
-Next highest priority PCB contents: PID: 6, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 7
-IO TRAP 1: 202
- IO TRAP 2: 70
-IO TRAP 1: 211
- IO TRAP 2: 238
-IO TRAP 1: 247
- IO TRAP 2: 385
-IO TRAP 1: 310
- IO TRAP 2: 136
-IO TRAP 1: 508
- IO TRAP 2: 376
-IO TRAP 1: 517
- IO TRAP 2: 604
-IO TRAP 1: 409
- IO TRAP 2: 451
-IO TRAP 1: 559
- IO TRAP 2: 565
-IO TRAP 1: 829
- IO TRAP 2: 574
-IO TRAP 1: 225
- IO TRAP 2: 474
-IO TRAP 1: 459
- IO TRAP 2: 303
-IO TRAP 1: 546
- IO TRAP 2: 540
-Making New PCBs: 
-contents: PID: 12, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 13, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 14, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 15, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=9: P7->P8->P9->P10->P11->P12->P13->P14->P15->*
-Q 1: Count=4: P1->P2->P3->P4->*
-Q 2: Count=1: P0->*
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 1, PRIORITY 1, PC 33
-PCB PID 3, PRIORITY 1, PC 159
-PCB PID 4, PRIORITY 1, PC 226
-PCB PID 13, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 6, state: running, priority: 0, PC: 0x00FC, 
-Next highest priority PCB contents: PID: 7, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 8
-IO TRAP 1: 391
- IO TRAP 2: 424
-IO TRAP 1: 679
- IO TRAP 2: 526
-IO TRAP 1: 799
- IO TRAP 2: 895
-IO TRAP 1: 282
- IO TRAP 2: 192
-IO TRAP 1: 522
- IO TRAP 2: 393
-IO TRAP 1: 777
- IO TRAP 2: 783
-Making New PCBs: 
-contents: PID: 16, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 17, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=10: P8->P9->P10->P11->P12->P13->P14->P15->P16->P17->*
-Q 1: Count=5: P1->P2->P3->P4->P6->*
-Q 2: Count=1: P0->*
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 1, PRIORITY 1, PC 33
-PCB PID 3, PRIORITY 1, PC 159
-PCB PID 4, PRIORITY 1, PC 226
-PCB PID 13, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 7, state: running, priority: 0, PC: 0x013F, 
-Next highest priority PCB contents: PID: 8, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 9
-IO TRAP 1: 63
- IO TRAP 2: 180
-IO TRAP 1: 354
- IO TRAP 2: 282
-IO TRAP 1: 561
- IO TRAP 2: 411
-IO TRAP 1: 400
- IO TRAP 2: 313
-IO TRAP 1: 592
- IO TRAP 2: 628
-IO TRAP 1: 649
- IO TRAP 2: 733
-IO TRAP 1: 327
- IO TRAP 2: 327
-IO TRAP 1: 525
- IO TRAP 2: 579
-IO TRAP 1: 654
- IO TRAP 2: 813
-IO TRAP 1: 345
- IO TRAP 2: 237
-IO TRAP 1: 351
- IO TRAP 2: 390
-IO TRAP 1: 525
- IO TRAP 2: 432
-Making New PCBs: 
-contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 19, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 20, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 21, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=13: P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->*
-Q 1: Count=6: P1->P2->P3->P4->P6->P7->*
-Q 2: Count=1: P0->*
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 1, PRIORITY 1, PC 33
-PCB PID 3, PRIORITY 1, PC 159
-PCB PID 4, PRIORITY 1, PC 226
-PCB PID 13, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 8, state: running, priority: 0, PC: 0x0144, 
-Next highest priority PCB contents: PID: 9, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 10
-
-RESETTING MLFQ
-IO TRAP 1: 307
- IO TRAP 2: 241
-IO TRAP 1: 502
- IO TRAP 2: 367
-IO TRAP 1: 799
- IO TRAP 2: 745
-IO TRAP 1: 141
- IO TRAP 2: 360
-IO TRAP 1: 186
- IO TRAP 2: 189
-IO TRAP 1: 213
- IO TRAP 2: 264
-IO TRAP 1: 238
- IO TRAP 2: 193
-IO TRAP 1: 322
- IO TRAP 2: 262
-IO TRAP 1: 454
- IO TRAP 2: 451
-Making New PCBs: 
-contents: PID: 22, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 23, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 24, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=22: P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P1->P2->P3->P4->P6->P7->P0->P22->P23->P24->*
-Q 1: Count=1: P8->*
+Q 0: Count=4: P3->P4->P5->P6->*
+Q 1: Count=0: 
 Q 2: Count=0: 
 Q 3: Count=0: 
 Q 4: Count=0: 
@@ -477,43 +79,381 @@ Q14: Count=0:
 Q15: Count=0: 
 
 
-PCB PID 1, PRIORITY 0, PC 33
-PCB PID 3, PRIORITY 0, PC 159
-PCB PID 4, PRIORITY 0, PC 226
-PCB PID 13, PRIORITY 0, PC 0
+PCB PID 4, PRIORITY 0, PC 0
 
-Going to be running next contents: PID: 9, state: running, priority: 0, PC: 0x01A3, 
+Going to be running next contents: PID: 2, state: running, priority: 0, PC: 0x0065, 
+Next highest priority PCB contents: PID: 3, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 3
+
+IO TRAP 1: 4378 2665 141 2205 
+IO TRAP 2: 3202 2724 2631 1832 
+Making New PCBs: 
+contents: PID: 7, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=4: P4->P5->P6->P7->*
+Q 1: Count=1: P2->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 4, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 3, state: running, priority: 0, PC: 0x008E, 
+Next highest priority PCB contents: PID: 4, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 4
+
+IO TRAP 1: 1377 2321 2059 1095 
+IO TRAP 2: 2427 3486 2737 1181 
+
+IO TRAP 1: 4841 3730 3028 4798 
+IO TRAP 2: 2563 426 330 2192 
+Making New PCBs: 
+contents: PID: 8, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 9, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=5: P5->P6->P7->P8->P9->*
+Q 1: Count=2: P2->P3->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 4, PRIORITY 0, PC 219
+
+Going to be running next contents: PID: 4, state: running, priority: 0, PC: 0x00DB, 
+Next highest priority PCB contents: PID: 5, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 5
+
+IO TRAP 1: 2200 3780 187 3546 
+IO TRAP 2: 933 1886 103 2431 
+Making New PCBs: 
+contents: PID: 10, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=5: P6->P7->P8->P9->P10->*
+Q 1: Count=3: P2->P3->P4->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 4, PRIORITY 1, PC 236
+
+Going to be running next contents: PID: 5, state: running, priority: 0, PC: 0x00EC, 
+Next highest priority PCB contents: PID: 6, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 6
+
+IO TRAP 1: 352 1245 1629 603 
+IO TRAP 2: 1480 805 1377 556 
+
+IO TRAP 1: 582 641 547 827 
+IO TRAP 2: 159 924 1644 1315 
+
+IO TRAP 1: 147 355 177 180 
+IO TRAP 2: 395 381 230 290 
+
+IO TRAP 1: 2390 903 1820 1212 
+IO TRAP 2: 52 1434 1749 2300 
+Making New PCBs: 
+contents: PID: 11, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 12, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 13, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 14, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=8: P7->P8->P9->P10->P11->P12->P13->P14->*
+Q 1: Count=4: P2->P3->P4->P5->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 4, PRIORITY 1, PC 236
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 6, state: running, priority: 0, PC: 0x0124, 
+Next highest priority PCB contents: PID: 7, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 7
+
+IO TRAP 1: 1476 1186 56 1203 
+IO TRAP 2: 1911 310 2592 731 
+
+IO TRAP 1: 549 509 627 109 
+IO TRAP 2: 863 866 305 379 
+Making New PCBs: 
+contents: PID: 15, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 16, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=9: P8->P9->P10->P11->P12->P13->P14->P15->P16->*
+Q 1: Count=5: P2->P3->P4->P5->P6->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 4, PRIORITY 1, PC 236
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 7, state: running, priority: 0, PC: 0x0152, 
+Next highest priority PCB contents: PID: 8, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 8
+
+IO TRAP 1: 834 646 155 1918 
+IO TRAP 2: 843 1310 654 784 
+
+IO TRAP 1: 1294 888 16 206 
+IO TRAP 2: 1743 527 763 108 
+Making New PCBs: 
+contents: PID: 17, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=10: P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->*
+Q 1: Count=6: P2->P3->P4->P5->P6->P7->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 4, PRIORITY 1, PC 236
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+PCB PID 18, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 8, state: running, priority: 0, PC: 0x016E, 
+Next highest priority PCB contents: PID: 9, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 9
+Making New PCBs: 
+MLFQ state at iteration end
+
+Q 0: Count=9: P10->P11->P12->P13->P14->P15->P16->P17->P18->*
+Q 1: Count=7: P2->P3->P4->P5->P6->P7->P8->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 4, PRIORITY 1, PC 236
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+PCB PID 18, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 9, state: running, priority: 0, PC: 0x019B, 
 Next highest priority PCB contents: PID: 10, state: ready, priority: 0, PC: 0x0000, 
 
 
-Iteration: 11
-IO TRAP 1: 137
- IO TRAP 2: 224
-IO TRAP 1: 416
- IO TRAP 2: 254
-IO TRAP 1: 635
- IO TRAP 2: 674
-IO TRAP 1: 194
- IO TRAP 2: 380
-IO TRAP 1: 272
- IO TRAP 2: 203
-IO TRAP 1: 383
- IO TRAP 2: 329
-IO TRAP 1: 274
- IO TRAP 2: 319
-IO TRAP 1: 340
- IO TRAP 2: 280
-IO TRAP 1: 556
- IO TRAP 2: 364
+Iteration: 10
+
+RESETTING MLFQ
+
+IO TRAP 1: 818 2135 1652 1333 
+IO TRAP 2: 1236 1204 936 2064 
+
+IO TRAP 1: 59 3741 1724 2849 
+IO TRAP 2: 1924 3210 846 204 
 Making New PCBs: 
+contents: PID: 19, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 20, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=17: P11->P12->P13->P14->P15->P16->P17->P18->P2->P3->P4->P5->P6->P7->P8->P19->P20->*
+Q 1: Count=1: P9->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 4, PRIORITY 0, PC 236
+PCB PID 11, PRIORITY 0, PC 0
+PCB PID 12, PRIORITY 0, PC 0
+PCB PID 18, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 10, state: running, priority: 0, PC: 0x01F8, 
+Next highest priority PCB contents: PID: 11, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 11
+
+IO TRAP 1: 355 437 174 275 
+IO TRAP 2: 382 384 277 294 
+
+IO TRAP 1: 248 1341 1100 1177 
+IO TRAP 2: 226 851 1070 233 
+
+IO TRAP 1: 1059 453 1338 430 
+IO TRAP 2: 181 1865 1593 1611 
+Making New PCBs: 
+contents: PID: 21, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 22, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 23, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=19: P12->P13->P14->P15->P16->P17->P18->P2->P3->P4->P5->P6->P7->P8->P19->P20->P21->P22->P23->*
+Q 1: Count=1: P9->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+PCB PID 4, PRIORITY 0, PC 236
+PCB PID 11, PRIORITY 0, PC 540
+PCB PID 12, PRIORITY 0, PC 0
+PCB PID 18, PRIORITY 0, PC 0
+
+Going to be running next contents: PID: 11, state: running, priority: 0, PC: 0x021C, 
+Next highest priority PCB contents: PID: 12, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 12
+
+IO TRAP 1: 188 770 734 874 
+IO TRAP 2: 208 566 241 535 
+
+IO TRAP 1: 967 1644 2542 93 
+IO TRAP 2: 1238 915 514 246 
+
+IO TRAP 1: 1516 1927 414 2185 
+IO TRAP 2: 797 844 3351 2827 
+
+IO TRAP 1: 1582 2212 3579 1312 
+IO TRAP 2: 996 1526 3247 954 
+Making New PCBs: 
+contents: PID: 24, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 25, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 26, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 27, state: ready, priority: 0, PC: 0x0000, 
 
 MLFQ state at iteration end
 
-Q 0: Count=24: P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P1->P2->P3->P4->P6->P7->P0->P22->P23->P24->P25->P26->P27->*
-Q 1: Count=2: P8->P9->*
+Q 0: Count=22: P13->P14->P15->P16->P17->P18->P2->P3->P4->P5->P6->P7->P8->P19->P20->P21->P22->P23->P24->P25->P26->P27->*
+Q 1: Count=2: P9->P11->*
 Q 2: Count=0: 
 Q 3: Count=0: 
 Q 4: Count=0: 
@@ -530,36 +470,38 @@ Q14: Count=0:
 Q15: Count=0: 
 
 
-PCB PID 1, PRIORITY 0, PC 33
-PCB PID 3, PRIORITY 0, PC 159
-PCB PID 4, PRIORITY 0, PC 226
-PCB PID 13, PRIORITY 0, PC 0
+PCB PID 4, PRIORITY 0, PC 236
+PCB PID 11, PRIORITY 1, PC 568
+PCB PID 12, PRIORITY 0, PC 568
+PCB PID 18, PRIORITY 0, PC 0
 
-Going to be running next contents: PID: 10, state: running, priority: 0, PC: 0x01BE, 
-Next highest priority PCB contents: PID: 11, state: ready, priority: 0, PC: 0x0000, 
+Going to be running next contents: PID: 12, state: running, priority: 0, PC: 0x0238, 
+Next highest priority PCB contents: PID: 13, state: ready, priority: 0, PC: 0x0000, 
 
 
-Iteration: 12
-IO TRAP 1: 263
- IO TRAP 2: 62
-IO TRAP 1: 320
- IO TRAP 2: 503
-IO TRAP 1: 566
- IO TRAP 2: 605
-IO TRAP 1: 81
- IO TRAP 2: 303
-IO TRAP 1: 105
- IO TRAP 2: 138
-IO TRAP 1: 243
- IO TRAP 2: 192
+Iteration: 13
+
+IO TRAP 1: 801 424 940 934 
+IO TRAP 2: 847 786 222 779 
+
+IO TRAP 1: 1360 1747 394 2106 
+IO TRAP 2: 1421 36 100 1988 
+
+IO TRAP 1: 654 1942 47 1635 
+IO TRAP 2: 111 820 877 2227 
+
+IO TRAP 1: 878 237 1838 533 
+IO TRAP 2: 1065 702 406 213 
 Making New PCBs: 
 contents: PID: 28, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 29, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 30, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 31, state: ready, priority: 0, PC: 0x0000, 
 
 MLFQ state at iteration end
 
-Q 0: Count=25: P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P1->P2->P3->P4->P6->P7->P0->P22->P23->P24->P25->P26->P27->P28->P29->*
-Q 1: Count=3: P8->P9->P10->*
+Q 0: Count=25: P14->P15->P16->P17->P18->P2->P3->P4->P5->P6->P7->P8->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P30->P31->*
+Q 1: Count=3: P9->P11->P12->*
 Q 2: Count=0: 
 Q 3: Count=0: 
 Q 4: Count=0: 
@@ -576,13 +518,13 @@ Q14: Count=0:
 Q15: Count=0: 
 
 
-PCB PID 1, PRIORITY 0, PC 33
-PCB PID 3, PRIORITY 0, PC 159
-PCB PID 4, PRIORITY 0, PC 226
-PCB PID 13, PRIORITY 0, PC 0
+PCB PID 4, PRIORITY 0, PC 236
+PCB PID 11, PRIORITY 1, PC 568
+PCB PID 12, PRIORITY 1, PC 603
+PCB PID 18, PRIORITY 0, PC 0
 
-Going to be running next contents: PID: 11, state: running, priority: 0, PC: 0x01D9, 
-Next highest priority PCB contents: PID: 12, state: ready, priority: 0, PC: 0x0000, 
+Going to be running next contents: PID: 13, state: running, priority: 0, PC: 0x025B, 
+Next highest priority PCB contents: PID: 14, state: ready, priority: 0, PC: 0x0000, 
 
 
 Reached max PCBs, ending Scheduler.
