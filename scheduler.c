@@ -126,6 +126,7 @@ void mainLoop() {
 		if (!(iterationCount % RESET_COUNT)) {
 			printf("\r\nRESETTING MLFQ\r\n");
 			resetMLFQ(thisScheduler);
+			totalProcesses += makePCBList(thisScheduler);
 		}
 		
 		iterationCount++;
@@ -272,8 +273,8 @@ int checkIoInt(Scheduler theScheduler) {
 */
 int checkTermination(Scheduler theScheduler) {
 	
-	if (theScheduler->running->termination > 0
-		&& theScheduler->running->term_count >= theScheduler->running->termination
+	if (theScheduler->running->terminate > 0
+		&& theScheduler->running->term_count >= theScheduler->running->terminate
 		&& isPrivileged(theScheduler->running) == 0) {
 		return 1;
 		
@@ -420,7 +421,7 @@ void resetReadyQueue (ReadyQueue queue) {
 	interrupted PCBs state to Ready and enqueue it into the Ready queue. It then
 	calls the dispatcher to get the next PCB in the queue.
 */
-void scheduling (int isTimer, Scheduler theScheduler) {
+void scheduling (int interrupt_type, Scheduler theScheduler) {
 	if (interrupt_type == TIMER_INT && theScheduler->running->state != STATE_HALT) {
 		theScheduler->interrupted->state = STATE_READY;
 		if (theScheduler->interrupted->priority < (NUM_PRIORITIES - 1)) {
@@ -451,6 +452,7 @@ void scheduling (int isTimer, Scheduler theScheduler) {
 		}
 			
 	} else if (interrupt_type == IO_INT && theScheduler->running->state != STATE_HALT) {
+		
 		if (io_trap_num == 1) {
 			PCB pcb = q_dequeue(theScheduler->waiting_io_1);
 			pcb->state = STATE_READY;
@@ -460,6 +462,10 @@ void scheduling (int isTimer, Scheduler theScheduler) {
 			pcb->state = STATE_READY;
 			pq_enqueue(theScheduler->ready, pcb);
 		}
+		
+		theScheduler->running = theScheduler->interrupted;
+		theScheduler->running->state = STATE_RUNNING;
+		sysstack = theScheduler->running->context->pc;
 	}
 	
 	if (theScheduler->running->state == STATE_HALT) {
