@@ -18,7 +18,7 @@
 unsigned int sysstack;
 int switchCalls;
 
-PCB privileged[4];
+// PCB privileged[4];
 int privilege_counter = 0;
 int ran_term_num = 0;
 int terminated = 0;
@@ -82,29 +82,27 @@ void mainLoop() {
 		if (thisScheduler->running != NULL) {
 			thisScheduler->running->context->pc++;
 			
-			
-			if (checkTermination(thisScheduler) == 1) {
-				terminate(thisScheduler);	
-			}
 	
 			if (checkTimerInt() == 1) {
-				pseudoISR(thisScheduler, TIMER_INT);
 				
-				totalProcesses += makePCBList(thisScheduler);	
+				printf("Iteration: %d\r\n", iterationCount);
+				pseudoISR(thisScheduler, TIMER_INT);
+				printf("\r\n========== TIMER INTERRUPT END ==========\r\n");	
 				printSchedulerState(thisScheduler);
+				iterationCount++;
 			} 
 		
-			// if (checkIoInt(thisScheduler) == 1) {
-				// printf("====================== I/O INTERRUPT ======================\n");
-				// pseudoISR(thisScheduler, IO_INT);
-				// printSchedulerState(thisScheduler);
-			// }
+			if (checkIoInt(thisScheduler) == 1) {
+				printf("====================== I/O INTERRUPT ======================\n");
+				pseudoISR(thisScheduler, IO_INT);
+				printSchedulerState(thisScheduler);
+			}
 			
-			// if (checkIoTrap(thisScheduler->running) > 0) {
-				// printf("====================== I/O TRAP ======================\n");
-				// pseudoISR(thisScheduler, IO_TRAP);
-				// printSchedulerState(thisScheduler);
-			// }
+			if (checkIoTrap(thisScheduler->running) > 0) {
+				printf("====================== I/O TRAP ======================\n");
+				pseudoISR(thisScheduler, IO_TRAP);
+				printSchedulerState(thisScheduler);
+			}
 			
 			
 			if (thisScheduler->running->context->pc == thisScheduler->running->max_pc) {
@@ -113,6 +111,7 @@ void mainLoop() {
 			}
 		} else {
 			iterationCount++;
+			printSchedulerState(thisScheduler);
 			
 		}
 		
@@ -146,21 +145,11 @@ int makePCBList (Scheduler theScheduler) {
 	int newPCBCount = rand() % MAX_PCB_IN_ROUND;
 	//int newPCBCount = 1;
 	
-	int lottery;
 	for (int i = 0; i < newPCBCount; i++) {
 		PCB newPCB = PCB_create();
 		newPCB->state = STATE_NEW;
 		q_enqueue(theScheduler->created, newPCB);
 		
-		lottery = rand() % 8;
-		
-		// creates privileged pcb
-		if (privilege_counter < 4 && (lottery == 3 || lottery == 5)) {
-			privileged[privilege_counter] = newPCB;
-		
-			
-			privilege_counter++;
-		}
 	}
 	printf("Making New PCBs: \r\n");
 	if (newPCBCount) {
@@ -180,7 +169,7 @@ int makePCBList (Scheduler theScheduler) {
 			theScheduler->running = pq_dequeue(theScheduler->ready);
 			theScheduler->running->state = STATE_RUNNING;
 			theScheduler->isNew = 0;
-			// quantumSize = theScheduler->ready->queues[0]->quantum_size;
+			quantumSize = theScheduler->ready->queues[0]->quantum_size;
 		}
 	}
 	
@@ -199,7 +188,7 @@ int checkTimerInt() {
 		return 0;
 	} else {
 		quantum_count = 0;
-		printf("========== TIMER INTERRUPT ==========\n");
+		printf("========== TIMER INTERRUPT START ==========\n");
 		return 1;
 	}
 }
@@ -265,24 +254,6 @@ int checkIoInt(Scheduler theScheduler) {
 }
 
 
-/*
-	Checks to see if the current termination count has reached its
-	full run and if it's not a privileged PCB. If so, it returns 1
-	and will be marked for termination. Otherwise, it returns 0 and
-	continues its run.
-*/
-int checkTermination(Scheduler theScheduler) {
-	
-	if (theScheduler->running->terminate > 0
-		&& theScheduler->running->term_count >= theScheduler->running->terminate
-		&& isPrivileged(theScheduler->running) == 0) {
-		return 1;
-		
-	}
-	
-	return 0;
-}
-
 
 /*
 	Creates a random number between 3000 and 4000 and adds it to the current PC.
@@ -306,9 +277,11 @@ unsigned int runProcess (unsigned int pc, int quantumSize) {
 */
 void terminate(Scheduler theScheduler) {
 	
-	if (theScheduler->running != NULL && isPrivileged(theScheduler->running) == 0) {
+	if (theScheduler->running != NULL && theScheduler->running->terminate > 0
+		&& theScheduler->running->term_count >= theScheduler->running->terminate) {
 		
 		theScheduler->running->state = STATE_HALT;
+		scheduling(-1, theScheduler);
 	
 	}
 	
@@ -349,13 +322,6 @@ void printSchedulerState (Scheduler theScheduler) {
 	
 	int index = 0;
 	
-	
-	while(privileged[index] != NULL && index < MAX_PRIVILEGE) {
-		printf("PCB PID %d, PRIORITY %d, PC %d\r\n", 
-		privileged[index]->pid, privileged[index]->priority, 
-		privileged[index]->context->pc);
-		index++;
-	}
 	printf("\r\n");
 	
 	if (pq_peek(theScheduler->ready)) {
@@ -432,13 +398,6 @@ void scheduling (int interrupt_type, Scheduler theScheduler) {
 		pq_enqueue(theScheduler->ready, theScheduler->interrupted);
 
 		
-		int index = isPrivileged(theScheduler->running);
-		
-		if (index != 0) {
-			privileged[index] = theScheduler->running;
-		}
-		
-		
 	}
 
 	else if (interrupt_type == IO_TRAP && theScheduler->running->state != STATE_HALT) {
@@ -485,10 +444,7 @@ void scheduling (int interrupt_type, Scheduler theScheduler) {
 
 	
 	dispatcher(theScheduler);
-	
-	
 
-	
 }
 
 
@@ -551,23 +507,6 @@ void schedulerDeconstructor (Scheduler theScheduler) {
 		PCB_destroy(theScheduler->interrupted);
 	}
 	free (theScheduler);
-}
-
-/*
-	Checks to see if a PCB is a "privileged PCB" by iterating through
-	the queue.
-*/
-int isPrivileged(PCB pcb) {
-	if (pcb != NULL) {
-		for (int i = 0; i < 4; i++) {
-			if (privileged[i] == pcb) {
-				return i;
-				break;
-			}	
-		}
-	}
-	
-	return 0;	
 }
 
 
