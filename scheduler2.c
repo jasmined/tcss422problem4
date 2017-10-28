@@ -1,19 +1,22 @@
 /*
-	10/12/2017
-	Authors: Connor Lundberg, Carter Odem, Jasmine Dacones
+	Notes:
 	
-	In this project we will be making a simple Round Robin scheduling algorithm
-	that will take a single ReadyQueue of PCBs and run them through our scheduler.
-	It will simulate the "running" of the process by randomly changing the PC value
-	of the process as well as incorporating various interrupts to show the effects
-	it has on the scheduling simulator.
-	
-	This file holds the defined functions declared in the scheduler.h header file.
+	- Misplaced interrupt print statements, should only be displayed when an
+	  actual interrupt occurs rather than displaying through every check.
+	- If statement added in mainLoop just in case the first iteration creates
+	  0 new PCBs.
+	- Fixed terminate(), it still included termination only if the random value
+	  generated was below 15.
+	- Fixed logic in scheduling(), don't need to call dispatch with an I/O
+	  completion since we don't need to load another process for running
 */
 
 #include "scheduler.h"
 
-
+#define MAX_VALUE_PRIVILEGED 15
+#define RANDOM_VALUE 101
+#define TOTAL_TERMINATED 4
+#define MAX_PRIVILEGE 4
 
 unsigned int sysstack;
 int switchCalls;
@@ -22,10 +25,9 @@ PCB privileged[4];
 int privilege_counter = 0;
 int ran_term_num = 0;
 int terminated = 0;
+int currQuantumSize;
 int quantumSize;
 int quantum_count;
-
-int io_trap_num = 0;
 
 /*
 	This function is our main loop. It creates a Scheduler object and follows the
@@ -51,31 +53,32 @@ void timer () {
 		totalProcesses += makePCBList(thisScheduler);		
 		
 		if (totalProcesses > 1) {
-			pc = runProcess(pc, quantumSize);
+			pc = runProcess(pc, currQuantumSize);
 			sysstack = pc;
 			terminate(thisScheduler); 
-			pseudoISR(thisScheduler, TIMER_INT);
+			pseudoISR(thisScheduler, 1);
 			pc = thisScheduler->running->context->pc;
 		}
 		
 		printSchedulerState(thisScheduler);
 		iterationCount++;
+		/*if (count == stop) {
+			break;
+		} else {
+			count++;
+		}*/
 		
 	}
 	schedulerDeconstructor(thisScheduler);
 }
 
-// Newly constructed loop of timer()
-/*
-	
 
-*/
 void mainLoop() {
 	
 	int totalProcesses = 0, iterationCount = 1;
 	Scheduler thisScheduler = schedulerConstructor();
 	totalProcesses += makePCBList(thisScheduler);
-
+	printSchedulerState(thisScheduler);
 	
 	for (;;) {
 		
@@ -88,22 +91,25 @@ void mainLoop() {
 			}
 	
 			if (checkTimerInt() == 1) {
+				printf("Iteration: %d\r\n", iterationCount);
 				pseudoISR(thisScheduler, TIMER_INT);
-				
-				totalProcesses += makePCBList(thisScheduler);	
+				printf("\r\n========== TIMER INTERRUPT END ==========\r\n");	
 				printSchedulerState(thisScheduler);
+				iterationCount++;
 			} 
 		
 			// if (checkIoInt(thisScheduler) == 1) {
-				// printf("====================== I/O INTERRUPT ======================\n");
+				// printf("Iteration: %d\r\n", iterationCount);
 				// pseudoISR(thisScheduler, IO_INT);
 				// printSchedulerState(thisScheduler);
+				// iterationCount++;
 			// }
 			
 			// if (checkIoTrap(thisScheduler->running) > 0) {
-				// printf("====================== I/O TRAP ======================\n");
+				// printf("Iteration: %d\r\n", iterationCount);
 				// pseudoISR(thisScheduler, IO_TRAP);
 				// printSchedulerState(thisScheduler);
+				// iterationCount++;
 			// }
 			
 			
@@ -117,6 +123,7 @@ void mainLoop() {
 		}
 		
 		
+		
 		if (totalProcesses >= MAX_PCB_TOTAL) {
 			printf("Reached max PCBs, ending Scheduler.\r\n");
 			break;
@@ -126,6 +133,9 @@ void mainLoop() {
 		if (!(iterationCount % RESET_COUNT)) {
 			printf("\r\nRESETTING MLFQ\r\n");
 			resetMLFQ(thisScheduler);
+			totalProcesses += makePCBList(thisScheduler);
+			printSchedulerState(thisScheduler);
+			iterationCount = 1;
 		}
 		
 		iterationCount++;
@@ -133,6 +143,100 @@ void mainLoop() {
 	}
 	
 	schedulerDeconstructor(thisScheduler);
+}
+
+
+/*
+	Checks to see if the quantum count has reached the maximum
+	value. If so, the quantum count is set back to 0 and throws a
+	timer interrupt, which then calls the psuedoISR. If not, the
+	quantum count is incremented by 1.
+*/
+int checkTimerInt() {
+	if (quantum_count < currQuantumSize) {
+		quantum_count++;
+		return 0;
+	} else {
+		printf("\r\n========== TIMER INTERRUPT START ==========\r\n");
+		quantum_count = 0;
+		return 1;
+	}
+}
+
+
+/*
+	Checks if the running PCB's PC has reached a trap in one
+	of the I/O trap arrays. If so, an interrupt is thrown and
+	the psuedoISR will run. If not, it just returns 0.
+*/
+int checkIoTrap(PCB running) {
+	
+	// int i = 0;
+	
+	// for (i; i < TRAP_COUNT; i++) {
+		// if (running->context->pc == running->io_trap_1[i]) {
+			// io_trap_num = 1;
+			// return 1;
+			// break;
+		// }
+		
+		// if (running->context->pc == running->io_trap_2[i]) {
+			// io_trap_num = 2;
+			// return 2;
+			// break;
+		// }
+	// }
+	
+	return 0;
+}
+
+
+
+/*
+	Checks if an I/O request has completed. If so, an interrupt is thrown and
+	the psuedoISR will run. If not, it just returns 0.
+*/
+int checkIoInt(Scheduler theScheduler) {
+	
+	// if (!q_is_empty(theScheduler->waiting_io_1)) {
+		// if (q_peek(theScheduler->waiting_io_1)->waiting_timer == 0) {
+			return 1;
+		// } else {
+			// q_peek(theScheduler->waiting_io_2)->waiting_timer--;
+		// return 0;
+		// }
+	// }
+	
+	
+	
+	// if (!q_is_empty(theScheduler->waiting_io_2)) {
+		// if (q_peek(theScheduler->waiting_io_2)->waiting_timer == 0) {
+			// return 1;
+		// } else {
+			// q_peek(theScheduler->waiting_io_2)->waiting_timer--;
+			// return 0;
+		// }
+	// } 
+	
+}
+
+
+/*
+	Checks to see if the current termination count has reached its
+	full run and if it's not a privileged PCB. If so, it returns 1
+	and will be marked for termination. Otherwise, it returns 0 and
+	continues its run.
+*/
+int checkTermination(Scheduler theScheduler) {
+	
+	if (theScheduler->running->termination > 0
+		&& theScheduler->running->term_count >= theScheduler->running->termination
+		&& isPrivileged(theScheduler->running) == 0) {
+		return 1;
+		
+	}
+	
+	return 0;
 }
 
 
@@ -179,107 +283,10 @@ int makePCBList (Scheduler theScheduler) {
 			theScheduler->running = pq_dequeue(theScheduler->ready);
 			theScheduler->running->state = STATE_RUNNING;
 			theScheduler->isNew = 0;
-			// quantumSize = theScheduler->ready->queues[0]->quantum_size;
 		}
 	}
 	
 	return newPCBCount;
-}
-
-/*
-	Checks to see if the quantum count has reached the maximum
-	value. If so, the quantum count is set back to 0 and throws a
-	timer interrupt, which then calls the psuedoISR. If not, the
-	quantum count is incremented by 1.
-*/
-int checkTimerInt() {
-	if (quantum_count < quantumSize) {
-		quantum_count++;
-		return 0;
-	} else {
-		quantum_count = 0;
-		printf("========== TIMER INTERRUPT ==========\n");
-		return 1;
-	}
-}
-
-
-/*
-	Checks if the running PCB's PC has reached a trap in one
-	of the I/O trap arrays. If so, an interrupt is thrown and
-	the psuedoISR will run. If not, it just returns 0.
-*/
-int checkIoTrap(PCB running) {
-	
-	int i = 0;
-	
-	for (i; i < TRAP_COUNT; i++) {
-		if (running->context->pc == running->io_trap_1[i]) {
-			io_trap_num = 1;
-			printf("====================== I/O TRAP ======================\n");
-			return 1;
-			break;
-		}
-		
-		if (running->context->pc == running->io_trap_2[i]) {
-			io_trap_num = 2;
-			printf("====================== I/O TRAP ======================\n");
-			return 2;
-			break;
-		}
-	}
-	
-	return 0;
-}
-
-
-
-/*
-	Checks if an I/O request has completed. If so, an interrupt is thrown and
-	the psuedoISR will run. If not, it just returns 0.
-*/
-int checkIoInt(Scheduler theScheduler) {
-	
-	if (!q_is_empty(theScheduler->waiting_io_1)) {
-		if (q_peek(theScheduler->waiting_io_1)->waiting_timer == 0) {
-			printf("====================== I/O INTERRUPT ======================\n");
-			return 1;
-		} else {
-			q_peek(theScheduler->waiting_io_2)->waiting_timer--;
-		return 0;
-		}
-	}
-	
-	
-	
-	if (!q_is_empty(theScheduler->waiting_io_2)) {
-		if (q_peek(theScheduler->waiting_io_2)->waiting_timer == 0) {
-			return 1;
-		} else {
-			q_peek(theScheduler->waiting_io_2)->waiting_timer--;
-			return 0;
-		}
-	} 
-	
-}
-
-
-/*
-	Checks to see if the current termination count has reached its
-	full run and if it's not a privileged PCB. If so, it returns 1
-	and will be marked for termination. Otherwise, it returns 0 and
-	continues its run.
-*/
-int checkTermination(Scheduler theScheduler) {
-	
-	if (theScheduler->running->termination > 0
-		&& theScheduler->running->term_count >= theScheduler->running->termination
-		&& isPrivileged(theScheduler->running) == 0) {
-		return 1;
-		
-	}
-	
-	return 0;
 }
 
 
@@ -291,7 +298,7 @@ unsigned int runProcess (unsigned int pc, int quantumSize) {
 	//(priority * PRIORITY_JUMP_EXTRA is the difference in time slice length between
 	//priority levels.
 	unsigned int jump;
-	if (quantumSize != 0) {
+	if (currQuantumSize != 0) {
 		jump = rand() % quantumSize;
 	}
 	
@@ -326,7 +333,7 @@ void pseudoISR (Scheduler theScheduler, int interrupt_type) {
 		theScheduler->running->context->pc = sysstack;
 	}
 
-	scheduling(interrupt_type, theScheduler);
+	scheduling(IS_TIMER, theScheduler);
 	pseudoIRET(theScheduler);
 }
 
@@ -420,7 +427,7 @@ void resetReadyQueue (ReadyQueue queue) {
 	interrupted PCBs state to Ready and enqueue it into the Ready queue. It then
 	calls the dispatcher to get the next PCB in the queue.
 */
-void scheduling (int isTimer, Scheduler theScheduler) {
+void scheduling (int interrupt_type, Scheduler theScheduler) {
 	if (interrupt_type == TIMER_INT && theScheduler->running->state != STATE_HALT) {
 		theScheduler->interrupted->state = STATE_READY;
 		if (theScheduler->interrupted->priority < (NUM_PRIORITIES - 1)) {
@@ -439,28 +446,6 @@ void scheduling (int isTimer, Scheduler theScheduler) {
 		
 		
 	}
-
-	else if (interrupt_type == IO_TRAP && theScheduler->running->state != STATE_HALT) {
-		theScheduler->running->state = STATE_WAIT;
-		theScheduler->running->waiting_timer = quantumSize * (rand() % 3 + 1) + rand() % 100;
-		
-		if (io_trap_num == 1) {
-			q_enqueue(theScheduler->waiting_io_1, theScheduler->running);
-		} else if (io_trap_num == 2) {
-			q_enqueue(theScheduler->waiting_io_2, theScheduler->running);
-		}
-			
-	} else if (interrupt_type == IO_INT && theScheduler->running->state != STATE_HALT) {
-		if (io_trap_num == 1) {
-			PCB pcb = q_dequeue(theScheduler->waiting_io_1);
-			pcb->state = STATE_READY;
-			pq_enqueue(theScheduler->ready, pcb);
-		} else if (io_trap_num == 2) {
-			PCB pcb = q_dequeue(theScheduler->waiting_io_2);
-			pcb->state = STATE_READY;
-			pq_enqueue(theScheduler->ready, pcb);
-		}
-	}
 	
 	if (theScheduler->running->state == STATE_HALT) {
 		q_enqueue(theScheduler->killed, theScheduler->running);
@@ -468,7 +453,6 @@ void scheduling (int isTimer, Scheduler theScheduler) {
 		
 		terminated++;
 	}
-	
 	theScheduler->running = pq_peek(theScheduler->ready);
 	
 	if (terminated >= TOTAL_TERMINATED) {
@@ -476,13 +460,13 @@ void scheduling (int isTimer, Scheduler theScheduler) {
 			PCB_destroy(q_dequeue(theScheduler->killed));
 		}
 	}
+	
+	if (interrupt_type != IO_INT) {
+		
+		dispatcher(theScheduler);
+		
+	}	
 
-	
-	dispatcher(theScheduler);
-	
-	
-
-	
 }
 
 
@@ -492,9 +476,9 @@ void scheduling (int isTimer, Scheduler theScheduler) {
 */
 void dispatcher (Scheduler theScheduler) {
 	if (pq_peek(theScheduler->ready)->state != STATE_HALT) {
-		quantumSize = getNextQuantumSize(theScheduler->ready);
-		// theScheduler->running = pq_dequeue(theScheduler->ready);
-		// theScheduler->running->state = STATE_RUNNING;
+		currQuantumSize = getNextQuantumSize(theScheduler->ready);
+		theScheduler->running = pq_dequeue(theScheduler->ready);
+		theScheduler->running->state = STATE_RUNNING;
 	}
 }
 
@@ -517,8 +501,6 @@ Scheduler schedulerConstructor () {
 	newScheduler->killed = q_create();
 	newScheduler->blocked = q_create();
 	newScheduler->ready = pq_create();
-	newScheduler->waiting_io_1 = q_create();
-	newScheduler->waiting_io_2 = q_create();
 	newScheduler->running = NULL;
 	newScheduler->interrupted = NULL;
 	newScheduler->isNew = 1;
@@ -537,8 +519,6 @@ void schedulerDeconstructor (Scheduler theScheduler) {
 	q_destroy(theScheduler->created);
 	q_destroy(theScheduler->killed);
 	q_destroy(theScheduler->blocked);
-	q_destroy(theScheduler->waiting_io_1);
-	q_destroy(theScheduler->waiting_io_2);
 	pq_destroy(theScheduler->ready);
 	PCB_destroy(theScheduler->running);
 	if (theScheduler->interrupted == theScheduler->running) {
@@ -556,7 +536,6 @@ int isPrivileged(PCB pcb) {
 		for (int i = 0; i < 4; i++) {
 			if (privileged[i] == pcb) {
 				return i;
-				break;
 			}	
 		}
 	}
@@ -574,8 +553,9 @@ void main () {
 	srand((unsigned) time(&t));
 	sysstack = 0;
 	switchCalls = 0;
-	quantumSize = 0;
+	currQuantumSize = 0;
 	quantum_count = 0;
 	// timer();
 	mainLoop();
+	
 }
