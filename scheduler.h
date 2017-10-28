@@ -87,11 +87,9 @@ Scheduler schedulerConstructor ();
 
 void schedulerDeconstructor (Scheduler);
 
-int isPrivileged(PCB pcb);
+// int isPrivileged(PCB pcb);
 
 void terminate(Scheduler theScheduler);
-
-int checkTermination(Scheduler theScheduler);
 
 void resetMLFQ(Scheduler theScheduler);
 

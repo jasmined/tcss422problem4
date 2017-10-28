@@ -75,6 +75,7 @@ void mainLoop() {
 	int totalProcesses = 0, iterationCount = 1;
 	Scheduler thisScheduler = schedulerConstructor();
 	totalProcesses += makePCBList(thisScheduler);
+	printSchedulerState(thisScheduler);
 
 	
 	for (;;) {
@@ -82,6 +83,7 @@ void mainLoop() {
 		if (thisScheduler->running != NULL) {
 			thisScheduler->running->context->pc++;
 			
+			terminate(thisScheduler);
 	
 			if (checkTimerInt() == 1) {
 				
@@ -93,26 +95,41 @@ void mainLoop() {
 			} 
 		
 			if (checkIoInt(thisScheduler) == 1) {
-				printf("====================== I/O INTERRUPT ======================\n");
+				printf("Iteration: %d\r\n", iterationCount);
+				printf("====================== I/O INTERRUPT START ======================\r\n");
+				
 				pseudoISR(thisScheduler, IO_INT);
+				printf("====================== I/O INTERRUPT END ======================\r\n");
 				printSchedulerState(thisScheduler);
+				iterationCount++;
 			}
 			
 			if (checkIoTrap(thisScheduler->running) > 0) {
-				printf("====================== I/O TRAP ======================\n");
+				printf("Iteration: %d\r\n", iterationCount);
+				printf("====================== I/O TRAP START ======================\r\n");
+				printf("I/O trap occurred at PC: %d\r\n", thisScheduler->running->context->pc);
 				pseudoISR(thisScheduler, IO_TRAP);
+				printf("====================== I/O TRAP END ======================\r\n");
 				printSchedulerState(thisScheduler);
+				iterationCount++;
 			}
-			
 			
 			if (thisScheduler->running->context->pc == thisScheduler->running->max_pc) {
 				thisScheduler->running->context->pc = 0;
 				thisScheduler->running->term_count++;
 			}
+			
 		} else {
 			iterationCount++;
+		}
+		
+		
+
+		if (!(iterationCount % RESET_COUNT)) {
+			printf("\r\nRESETTING MLFQ\r\n");
+			resetMLFQ(thisScheduler);
+			totalProcesses += makePCBList(thisScheduler);
 			printSchedulerState(thisScheduler);
-			
 		}
 		
 		
@@ -120,15 +137,6 @@ void mainLoop() {
 			printf("Reached max PCBs, ending Scheduler.\r\n");
 			break;
 		}
-		
-		printf("Iteration: %d\r\n", iterationCount);
-		if (!(iterationCount % RESET_COUNT)) {
-			printf("\r\nRESETTING MLFQ\r\n");
-			resetMLFQ(thisScheduler);
-			totalProcesses += makePCBList(thisScheduler);
-		}
-		
-		iterationCount++;
 		
 	}
 	
@@ -187,8 +195,9 @@ int checkTimerInt() {
 		quantum_count++;
 		return 0;
 	} else {
+		printf("========== TIMER INTERRUPT START ==========\r\n");
+		printf("Current quantum count: %d\r\n", quantum_count);
 		quantum_count = 0;
-		printf("========== TIMER INTERRUPT START ==========\n");
 		return 1;
 	}
 }
@@ -206,14 +215,12 @@ int checkIoTrap(PCB running) {
 	for (i; i < TRAP_COUNT; i++) {
 		if (running->context->pc == running->io_trap_1[i]) {
 			io_trap_num = 1;
-			printf("====================== I/O TRAP ======================\n");
 			return 1;
 			break;
 		}
 		
 		if (running->context->pc == running->io_trap_2[i]) {
 			io_trap_num = 2;
-			printf("====================== I/O TRAP ======================\n");
 			return 2;
 			break;
 		}
@@ -232,7 +239,6 @@ int checkIoInt(Scheduler theScheduler) {
 	
 	if (!q_is_empty(theScheduler->waiting_io_1)) {
 		if (q_peek(theScheduler->waiting_io_1)->waiting_timer == 0) {
-			printf("====================== I/O INTERRUPT ======================\n");
 			return 1;
 		} else {
 			q_peek(theScheduler->waiting_io_2)->waiting_timer--;
@@ -443,7 +449,10 @@ void scheduling (int interrupt_type, Scheduler theScheduler) {
 	}
 
 	
-	dispatcher(theScheduler);
+	if (interrupt_type != IO_INT) {
+		dispatcher(theScheduler);
+	}
+	
 
 }
 
