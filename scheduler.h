@@ -30,7 +30,7 @@
 #define PC_JUMP_LIMIT 999
 #define IS_TIMER 1
 #define SWITCH_CALLS 4
-#define RESET_COUNT 10
+#define RESET_COUNT 20
 
 #define MAX_VALUE_PRIVILEGED 15
 #define RANDOM_VALUE 101

@@ -10,7 +10,7 @@
 
 #define NUM_PRIORITIES 16
 #define MAX_PCB 5000
-#define MIN_PCB 500
+#define MIN_PCB 100
 #define MAX_TERM_COUNT 15
 
 /* The CPU state, values named as in the LC-3 processor. */
