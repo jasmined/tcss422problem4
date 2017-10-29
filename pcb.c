@@ -48,9 +48,16 @@ void initialize_data(/* in-out */ PCB pcb) {
   pcb->terminate = rand() % MAX_TERM_COUNT;
   pcb->term_count = 0;
   pcb->waiting_timer = -1;
-  
+  pcb->io_trap_1 = malloc(sizeof(unsigned int) * 4);
+  pcb->io_trap_2 = malloc(sizeof(unsigned int) * 4);
   populateIOTrap(pcb, 1);
   populateIOTrap(pcb, 2);
+  
+  
+  for (int i = 0 ; i < 4; i++) {
+      *(pcb->io_trap_1 + i) = 0;
+      *(pcb->io_trap_2 + i) = 0;
+  }
 }
 
 /*
@@ -164,6 +171,8 @@ int ioTrapValueExists(PCB pcb, int rand) {
  */
 void PCB_destroy(/* in-out */ PCB pcb) {
 	free(pcb->context);
+	free(pcb->io_trap_1);
+	free(pcb->io_trap_2);
 	free(pcb);// that thing
 
 	  

@@ -58,8 +58,8 @@ typedef struct pcb {
 	unsigned int termination;
 	unsigned int terminate;
 	unsigned int term_count;
-	unsigned int io_trap_1[4];
-	unsigned int io_trap_2[4];
+	unsigned int * io_trap_1;
+	unsigned int * io_trap_2;
 	unsigned int waiting_timer;
 } PCB_s;
 
