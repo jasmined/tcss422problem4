@@ -224,7 +224,11 @@ void PCB_assign_priority(/* in */ PCB the_pcb, /* in */ unsigned int the_priorit
  */
 void toStringPCB(PCB thisPCB, int showCpu) {
 	printf("contents: ");
-	
+	if (thisPCB == NULL)
+	{
+		printf("PCB is NULL\n");
+		return;
+	}
 	printf("PID: %d, ", thisPCB->pid);
 
 	switch(thisPCB->state) {
