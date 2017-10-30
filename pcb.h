@@ -9,7 +9,7 @@
 #define PCB_H
 
 #define NUM_PRIORITIES 16
-#define MAX_PCB 5000
+#define MAX_PCB 2000
 #define MIN_PCB 100
 #define MAX_TERM_COUNT 15
 

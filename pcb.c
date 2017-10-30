@@ -53,11 +53,6 @@ void initialize_data(/* in-out */ PCB pcb) {
   populateIOTrap(pcb, 1);
   populateIOTrap(pcb, 2);
   
-  
-  for (int i = 0 ; i < 4; i++) {
-      *(pcb->io_trap_1 + i) = 0;
-      *(pcb->io_trap_2 + i) = 0;
-  }
 }
 
 /*

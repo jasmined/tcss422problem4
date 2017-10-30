@@ -99,7 +99,7 @@ void mainLoop() {
 	
 	// for (;;) {
 		
-	while (iterationCount < 30) {
+	while (iterationCount < 5000) {
 		
 		if (thisScheduler->running != NULL && totalProcesses > 1) {
 			sysstack = thisScheduler->running->context->pc++;
@@ -128,32 +128,7 @@ void mainLoop() {
 			if (checkIoTrap(thisScheduler->running) > 0) {
 				printf("Iteration: %d\r\n", iterationCount);
 				printf("====================== I/O TRAP START ======================\r\n");
-				printf("At PCB: ");
-				toStringPCB(thisScheduler->running, 0);
-				printf("\r\n");
-				
-				
-				// working
-				// printf("TRAP 1\n");
-				// if (thisScheduler->running->io_trap_1[0] > 0) {
-					// for (int i = 0; i < 4; i ++) {
-						// printf("%d ", thisScheduler->running->io_trap_1[i]);
-						
-					// }	
-				// }
-				
-				// printf("TRAP 2\n");
-				// if (thisScheduler->running->io_trap_2[0] > 0) {
-					// for (int i = 0; i < 4; i ++) {
-						// printf("%d ", thisScheduler->running->io_trap_2[i]);
-						
-					// }	
-				// }
-				
-				
 				printf("I/O trap occurred at PC: %d\r\n", thisScheduler->running->context->pc);
-				// printf("Request waiting timer: %d\n", thisScheduler->running->waiting_timer);
-				// printf("Current timer: %d\n", io_timer);
 				pseudoISR(thisScheduler, IO_TRAP);
 				printf("====================== I/O TRAP END ======================\r\n");
 				printSchedulerState(thisScheduler);
@@ -183,7 +158,7 @@ void mainLoop() {
 		
 		
 		if (totalProcesses >= MAX_PCB_TOTAL) {
-			// printf("Reached max PCBs, ending Scheduler.\r\n");
+			printf("Reached max PCBs, ending Scheduler.\r\n");
 			// break;
 		} else {
 			totalProcesses += makePCBList(thisScheduler);
@@ -207,7 +182,6 @@ int makePCBList (Scheduler theScheduler) {
 	for (int i = 0; i < newPCBCount; i++) {
 		PCB newPCB = PCB_create();
 		newPCB->state = STATE_NEW;
-		newPCB->creation = clock();
 		q_enqueue(theScheduler->created, newPCB);
 		
 	}
@@ -266,21 +240,21 @@ int checkIoTrap(PCB running) {
 	int i = 0;
 
 
-	// printf("PC IN IO TRAP: %d\n", running->context->pc);
+	printf("PC IN IO TRAP: %d\n", running->context->pc);
 	
 	for (i; i < TRAP_COUNT; i++) {
 		
 		if (running->context->pc == running->io_trap_1[i]) {
-			// printf("TRAP 1: %d", running->io_trap_1[i]);
-			// printf("in io trap\n");
+			printf("TRAP 1: %d", running->io_trap_1[i]);
+			printf("in io trap\n");
 			io_trap_num = 1;
 			return 1;
 			break;
 		}
 		
 		if (running->context->pc == running->io_trap_2[i]) {
-			// printf("TRAP 2: %d", running->io_trap_2[i]);
-			// printf("in io trap\n");
+			printf("TRAP 2: %d", running->io_trap_2[i]);
+			printf("in io trap\n");
 			io_trap_num = 2;
 			return 2;
 			break;
@@ -300,14 +274,13 @@ int checkIoTrap(PCB running) {
 int checkIoInt(Scheduler theScheduler) {
 	
 	if (!q_is_empty(theScheduler->waiting_io_1)) {
-		printf("Waiting timer: %d\n", q_peek(theScheduler->waiting_io_1)->waiting_timer);
-		if (q_peek(theScheduler->waiting_io_1)->waiting_timer == io_timer) {
+		if (q_peek(theScheduler->waiting_io_1)->waiting_timer == 0) {
 			
 			return 1;
 		
 		} else {
-			printf("IO timer: %d\n", io_timer);
-			io_timer++;
+			// q_peek(theScheduler->waiting_io_1)->waiting_timer--;
+			io_timer--;
 			return 0;
 
 		}
@@ -317,13 +290,11 @@ int checkIoInt(Scheduler theScheduler) {
 	
 	
 	if (!q_is_empty(theScheduler->waiting_io_2)) {
-		printf("Waiting timer: %d\n", q_peek(theScheduler->waiting_io_2)->waiting_timer);
-		if (q_peek(theScheduler->waiting_io_2)->waiting_timer == io_timer) {
+		if (q_peek(theScheduler->waiting_io_2)->waiting_timer == 0) {
 			io_timer = 0;
 			return 1;
 		} else {
-			printf("IO timer: %d\n", io_timer);
-			io_timer++;
+			io_timer--;
 			
 			return 0;
 		}
@@ -355,6 +326,8 @@ unsigned int runProcess (unsigned int pc, int quantumSize) {
 */
 void terminate(Scheduler theScheduler) {
 	
+
+	
 	if (theScheduler->running != NULL && theScheduler->running->terminate > 0
 		&& theScheduler->running->term_count == theScheduler->running->terminate) {
 		printf("\nterm count: %d\n", theScheduler->running->term_count);
@@ -363,7 +336,6 @@ void terminate(Scheduler theScheduler) {
 		
 		printf("===== P%d set for termination =====\n", theScheduler->running->pid);
 		theScheduler->running->state = STATE_HALT;
-		theScheduler->running->termination = clock();
 		scheduling(-1, theScheduler);
 	
 	}
@@ -487,7 +459,6 @@ void scheduling (int interrupt_type, Scheduler theScheduler) {
 	else if (interrupt_type == IO_TRAP && theScheduler->running->state != STATE_HALT) {
 		theScheduler->running->state = STATE_WAIT;
 		theScheduler->running->waiting_timer = quantumSize * (rand() % 3 + 1) + rand() % 100;
-		io_timer = theScheduler->running->waiting_timer;
 		
 		if (io_trap_num == 1) {
 			q_enqueue(theScheduler->waiting_io_1, theScheduler->running);
