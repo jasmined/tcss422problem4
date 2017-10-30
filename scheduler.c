@@ -28,6 +28,7 @@
 
 
 #include "scheduler.h"
+#include <time.h>
 
 
 
@@ -88,7 +89,7 @@ void timer () {
 */
 void mainLoop() {
 	
-	int totalProcesses = 0, iterationCount = 1;
+	int totalProcesses = 0, iterationCount = 0;
 	Scheduler thisScheduler = schedulerConstructor();
 	totalProcesses += makePCBList(thisScheduler);
 	printSchedulerState(thisScheduler);
@@ -97,7 +98,7 @@ void mainLoop() {
 	for (;;) {
 		
 	// while (iterationCount < 5000) {
-		
+		iterationCount++;
 		if (thisScheduler->running != NULL && totalProcesses > 1) {
 			thisScheduler->running->context->pc++;
 			
@@ -109,7 +110,7 @@ void mainLoop() {
 				printf("Iteration: %d\r\n", iterationCount);
 				pseudoISR(thisScheduler, TIMER_INT);	
 				printSchedulerState(thisScheduler);
-				iterationCount++;
+				//iterationCount++;
 			} 
 		
 			if (checkIoInt(thisScheduler) == 1) {
@@ -119,7 +120,7 @@ void mainLoop() {
 				pseudoISR(thisScheduler, IO_INT);
 				printf("====================== I/O INTERRUPT END ======================\r\n");
 				printSchedulerState(thisScheduler);
-				iterationCount++;
+				//iterationCount++;
 			}
 			
 			if (checkIoTrap(thisScheduler->running) > 0) {
@@ -129,7 +130,7 @@ void mainLoop() {
 				pseudoISR(thisScheduler, IO_TRAP);
 				printf("====================== I/O TRAP END ======================\r\n");
 				printSchedulerState(thisScheduler);
-				iterationCount++;
+				//iterationCount++;
 			}
 			
 			if (thisScheduler->running->context->pc == thisScheduler->running->max_pc) {
@@ -138,21 +139,20 @@ void mainLoop() {
 			}
 			
 		} else {
-			iterationCount++;
+			//iterationCount++;
 
 		}
 		
 		// keep this here
 		terminate(thisScheduler);
 
-		if (!(iterationCount % RESET_COUNT)) {
+		if ((iterationCount % RESET_COUNT) == 0) {
 			printf("\r\nRESETTING MLFQ\r\n");
 			resetMLFQ(thisScheduler);
 			totalProcesses += makePCBList(thisScheduler);
 			printSchedulerState(thisScheduler); 
-			// iterationCount = 1;
+			//iterationCount = 1;
 		}
-		
 		
 		if (totalProcesses >= MAX_PCB_TOTAL) {
 			printf("Reached max PCBs, ending Scheduler.\r\n");
@@ -177,6 +177,8 @@ int makePCBList (Scheduler theScheduler) {
 	for (int i = 0; i < newPCBCount; i++) {
 		PCB newPCB = PCB_create();
 		newPCB->state = STATE_NEW;
+		newPCB->creation = clock();
+		printf("Process created at %d\n", newPCB->creation);
 		q_enqueue(theScheduler->created, newPCB);
 		
 	}
@@ -315,12 +317,15 @@ void terminate(Scheduler theScheduler) {
 	
 	if (theScheduler->running != NULL && theScheduler->running->terminate > 0
 		&& theScheduler->running->term_count == theScheduler->running->terminate) {
-				printf("\nterm count: %d\n", theScheduler->running->term_count);
-	printf("\nmax termination: %d\n", theScheduler->running->terminate);
-	printf("\nPID: %d", theScheduler->running->pid);
+		
+		printf("\nterm count: %d\n", theScheduler->running->term_count);
+		printf("\nmax termination: %d\n", theScheduler->running->terminate);
+		printf("\nPID: %d", theScheduler->running->pid);
 		
 		printf("===== P%d set for termination =====\n", theScheduler->running->pid);
 		theScheduler->running->state = STATE_HALT;
+		theScheduler->running->termination = clock();
+		printf("Process terminated at %d\n", theScheduler->running->termination);
 		scheduling(-1, theScheduler);
 	
 	}
@@ -337,7 +342,8 @@ void pseudoISR (Scheduler theScheduler, int interrupt_type) {
 	if (theScheduler->running != NULL && theScheduler->running->state != STATE_HALT) {
 		theScheduler->running->state = STATE_INT;
 		theScheduler->interrupted = theScheduler->running;
-		theScheduler->running->context->pc = sysstack;
+		//theScheduler->running->context->pc = sysstack;
+		sysstack = theScheduler->running->context->pc;
 	}
 
 	scheduling(interrupt_type, theScheduler);
@@ -365,14 +371,14 @@ void printSchedulerState (Scheduler theScheduler) {
 	printf("\r\n");
 	
 	if (pq_peek(theScheduler->ready)) {
-		printf("Going to be running next ");
+		printf("Current running process ");
 		toStringPCB(theScheduler->running, 0);
 		printf("\r\n");
 		printf("Next highest priority PCB ");
 		toStringPCB(pq_peek(theScheduler->ready), 0);
 		printf("\r\n\r\n\r\n");
 	} else {
-		printf("Going to be running next ");
+		printf("Current running process ");
 		if (theScheduler->running) {
 			toStringPCB(theScheduler->running, 0);
 		}
@@ -501,6 +507,14 @@ void scheduling (int interrupt_type, Scheduler theScheduler) {
 	running state of the Scheduler.
 */
 void dispatcher (Scheduler theScheduler) {
+	if (pq_peek(theScheduler->ready) == NULL)
+	{
+		int check = 0;
+		while(check == 0)
+		{
+			check = makePCBList(theScheduler);
+		}
+	}
 	if (pq_peek(theScheduler->ready) != NULL && pq_peek(theScheduler->ready)->state != STATE_HALT) {
 		quantumSize = getNextQuantumSize(theScheduler->ready);
 		theScheduler->running = pq_dequeue(theScheduler->ready);
@@ -547,19 +561,19 @@ Scheduler schedulerConstructor () {
 	doesn't crash).
 */
 void schedulerDeconstructor (Scheduler theScheduler) {
-	q_destroy(theScheduler->created);
-	q_destroy(theScheduler->killed);
-	q_destroy(theScheduler->blocked);
-	q_destroy(theScheduler->waiting_io_1);
-	q_destroy(theScheduler->waiting_io_2);
-	pq_destroy(theScheduler->ready);
-	// if (theScheduler->running != NULL) {
-		PCB_destroy(theScheduler->running);
-	// }
+	// q_destroy(theScheduler->created);
+	// q_destroy(theScheduler->killed);
+	// q_destroy(theScheduler->blocked);
+	// q_destroy(theScheduler->waiting_io_1);
+	// q_destroy(theScheduler->waiting_io_2);
+	// pq_destroy(theScheduler->ready);
+	// // if (theScheduler->running != NULL) {
+	// 	PCB_destroy(theScheduler->running);
+	// // }
 	
-	if (theScheduler->interrupted != NULL) {
-		// PCB_destroy(theScheduler->interrupted);
-	}
+	// if (theScheduler->interrupted != NULL) {
+	// 	// PCB_destroy(theScheduler->interrupted);
+	// }
 	
 	free (theScheduler);
 }
