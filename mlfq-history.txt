@@ -1,23 +1,14 @@
-Iteration: 1
+Jasmine Dacones, David Foster
+TCSS 422, Problem 4
 
-IO TRAP 1: 409 1864 2020 1341 
-IO TRAP 2: 2019 2170 1033 1560 
-
-IO TRAP 1: 268 171 392 65 
-IO TRAP 2: 1123 142 504 1530 
-
-IO TRAP 1: 634 282 323 629 
-IO TRAP 2: 180 559 305 317 
 Making New PCBs: 
 contents: PID: 0, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 1, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 2, state: ready, priority: 0, PC: 0x0000, 
 
 Dequeueing PCB contents: PID: 0, state: ready, priority: 0, PC: 0x0000, 
 
 MLFQ state at iteration end
 
-Q 0: Count=1: P2->*
+Q 0: Count=0: 
 Q 1: Count=0: 
 Q 2: Count=0: 
 Q 3: Count=0: 
@@ -36,424 +27,72 @@ Q15: Count=0:
 
 
 
-Going to be running next contents: PID: 1, state: running, priority: 0, PC: 0x0003, 
-Next highest priority PCB contents: PID: 2, state: ready, priority: 0, PC: 0x0000, 
+Current running process contents: PID: 0, state: running, priority: 0, PC: 0x0000, Next highest priority PCB contents: The MLFQ is empty!
 
 
-Iteration: 2
 
-IO TRAP 1: 939 1315 728 2955 
-IO TRAP 2: 894 2396 1850 53 
-
-IO TRAP 1: 2870 2900 1456 2227 
-IO TRAP 2: 2782 815 1231 2620 
-
-IO TRAP 1: 303 56 305 1021 
-IO TRAP 2: 946 1023 858 357 
-
-IO TRAP 1: 1308 1677 446 927 
-IO TRAP 2: 310 731 879 1513 
 Making New PCBs: 
+contents: PID: 1, state: ready, priority: 0, PC: 0x0000, 
+
+Making New PCBs: 
+contents: PID: 2, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 3, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 4, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 5, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 6, state: ready, priority: 0, PC: 0x0000, 
 
-MLFQ state at iteration end
-
-Q 0: Count=4: P3->P4->P5->P6->*
-Q 1: Count=0: 
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 4, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 2, state: running, priority: 0, PC: 0x0065, 
-Next highest priority PCB contents: PID: 3, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 3
-
-IO TRAP 1: 4378 2665 141 2205 
-IO TRAP 2: 3202 2724 2631 1832 
 Making New PCBs: 
+contents: PID: 6, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 7, state: ready, priority: 0, PC: 0x0000, 
 
-MLFQ state at iteration end
-
-Q 0: Count=4: P4->P5->P6->P7->*
-Q 1: Count=1: P2->*
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 4, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 3, state: running, priority: 0, PC: 0x008E, 
-Next highest priority PCB contents: PID: 4, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 4
-
-IO TRAP 1: 1377 2321 2059 1095 
-IO TRAP 2: 2427 3486 2737 1181 
-
-IO TRAP 1: 4841 3730 3028 4798 
-IO TRAP 2: 2563 426 330 2192 
 Making New PCBs: 
 contents: PID: 8, state: ready, priority: 0, PC: 0x0000, 
+
+Making New PCBs: 
 contents: PID: 9, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=5: P5->P6->P7->P8->P9->*
-Q 1: Count=2: P2->P3->*
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 4, PRIORITY 0, PC 219
-
-Going to be running next contents: PID: 4, state: running, priority: 0, PC: 0x00DB, 
-Next highest priority PCB contents: PID: 5, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 5
-
-IO TRAP 1: 2200 3780 187 3546 
-IO TRAP 2: 933 1886 103 2431 
-Making New PCBs: 
 contents: PID: 10, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=5: P6->P7->P8->P9->P10->*
-Q 1: Count=3: P2->P3->P4->*
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 4, PRIORITY 1, PC 236
-
-Going to be running next contents: PID: 5, state: running, priority: 0, PC: 0x00EC, 
-Next highest priority PCB contents: PID: 6, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 6
-
-IO TRAP 1: 352 1245 1629 603 
-IO TRAP 2: 1480 805 1377 556 
-
-IO TRAP 1: 582 641 547 827 
-IO TRAP 2: 159 924 1644 1315 
-
-IO TRAP 1: 147 355 177 180 
-IO TRAP 2: 395 381 230 290 
-
-IO TRAP 1: 2390 903 1820 1212 
-IO TRAP 2: 52 1434 1749 2300 
-Making New PCBs: 
 contents: PID: 11, state: ready, priority: 0, PC: 0x0000, 
+
+Making New PCBs: 
 contents: PID: 12, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 13, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 14, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=8: P7->P8->P9->P10->P11->P12->P13->P14->*
-Q 1: Count=4: P2->P3->P4->P5->*
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 4, PRIORITY 1, PC 236
-PCB PID 11, PRIORITY 0, PC 0
-PCB PID 12, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 6, state: running, priority: 0, PC: 0x0124, 
-Next highest priority PCB contents: PID: 7, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 7
-
-IO TRAP 1: 1476 1186 56 1203 
-IO TRAP 2: 1911 310 2592 731 
-
-IO TRAP 1: 549 509 627 109 
-IO TRAP 2: 863 866 305 379 
-Making New PCBs: 
 contents: PID: 15, state: ready, priority: 0, PC: 0x0000, 
+
+Making New PCBs: 
 contents: PID: 16, state: ready, priority: 0, PC: 0x0000, 
 
-MLFQ state at iteration end
-
-Q 0: Count=9: P8->P9->P10->P11->P12->P13->P14->P15->P16->*
-Q 1: Count=5: P2->P3->P4->P5->P6->*
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 4, PRIORITY 1, PC 236
-PCB PID 11, PRIORITY 0, PC 0
-PCB PID 12, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 7, state: running, priority: 0, PC: 0x0152, 
-Next highest priority PCB contents: PID: 8, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 8
-
-IO TRAP 1: 834 646 155 1918 
-IO TRAP 2: 843 1310 654 784 
-
-IO TRAP 1: 1294 888 16 206 
-IO TRAP 2: 1743 527 763 108 
 Making New PCBs: 
 contents: PID: 17, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=10: P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->*
-Q 1: Count=6: P2->P3->P4->P5->P6->P7->*
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 4, PRIORITY 1, PC 236
-PCB PID 11, PRIORITY 0, PC 0
-PCB PID 12, PRIORITY 0, PC 0
-PCB PID 18, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 8, state: running, priority: 0, PC: 0x016E, 
-Next highest priority PCB contents: PID: 9, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 9
-Making New PCBs: 
-MLFQ state at iteration end
-
-Q 0: Count=9: P10->P11->P12->P13->P14->P15->P16->P17->P18->*
-Q 1: Count=7: P2->P3->P4->P5->P6->P7->P8->*
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 4, PRIORITY 1, PC 236
-PCB PID 11, PRIORITY 0, PC 0
-PCB PID 12, PRIORITY 0, PC 0
-PCB PID 18, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 9, state: running, priority: 0, PC: 0x019B, 
-Next highest priority PCB contents: PID: 10, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 10
-
-RESETTING MLFQ
-
-IO TRAP 1: 818 2135 1652 1333 
-IO TRAP 2: 1236 1204 936 2064 
-
-IO TRAP 1: 59 3741 1724 2849 
-IO TRAP 2: 1924 3210 846 204 
-Making New PCBs: 
 contents: PID: 19, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 20, state: ready, priority: 0, PC: 0x0000, 
 
-MLFQ state at iteration end
-
-Q 0: Count=17: P11->P12->P13->P14->P15->P16->P17->P18->P2->P3->P4->P5->P6->P7->P8->P19->P20->*
-Q 1: Count=1: P9->*
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 4, PRIORITY 0, PC 236
-PCB PID 11, PRIORITY 0, PC 0
-PCB PID 12, PRIORITY 0, PC 0
-PCB PID 18, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 10, state: running, priority: 0, PC: 0x01F8, 
-Next highest priority PCB contents: PID: 11, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 11
-
-IO TRAP 1: 355 437 174 275 
-IO TRAP 2: 382 384 277 294 
-
-IO TRAP 1: 248 1341 1100 1177 
-IO TRAP 2: 226 851 1070 233 
-
-IO TRAP 1: 1059 453 1338 430 
-IO TRAP 2: 181 1865 1593 1611 
+Making New PCBs: 
 Making New PCBs: 
 contents: PID: 21, state: ready, priority: 0, PC: 0x0000, 
+
+Making New PCBs: 
 contents: PID: 22, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 23, state: ready, priority: 0, PC: 0x0000, 
-
-MLFQ state at iteration end
-
-Q 0: Count=19: P12->P13->P14->P15->P16->P17->P18->P2->P3->P4->P5->P6->P7->P8->P19->P20->P21->P22->P23->*
-Q 1: Count=1: P9->*
-Q 2: Count=0: 
-Q 3: Count=0: 
-Q 4: Count=0: 
-Q 5: Count=0: 
-Q 6: Count=0: 
-Q 7: Count=0: 
-Q 8: Count=0: 
-Q 9: Count=0: 
-Q10: Count=0: 
-Q11: Count=0: 
-Q12: Count=0: 
-Q13: Count=0: 
-Q14: Count=0: 
-Q15: Count=0: 
-
-
-PCB PID 4, PRIORITY 0, PC 236
-PCB PID 11, PRIORITY 0, PC 540
-PCB PID 12, PRIORITY 0, PC 0
-PCB PID 18, PRIORITY 0, PC 0
-
-Going to be running next contents: PID: 11, state: running, priority: 0, PC: 0x021C, 
-Next highest priority PCB contents: PID: 12, state: ready, priority: 0, PC: 0x0000, 
-
-
-Iteration: 12
-
-IO TRAP 1: 188 770 734 874 
-IO TRAP 2: 208 566 241 535 
-
-IO TRAP 1: 967 1644 2542 93 
-IO TRAP 2: 1238 915 514 246 
-
-IO TRAP 1: 1516 1927 414 2185 
-IO TRAP 2: 797 844 3351 2827 
-
-IO TRAP 1: 1582 2212 3579 1312 
-IO TRAP 2: 996 1526 3247 954 
-Making New PCBs: 
 contents: PID: 24, state: ready, priority: 0, PC: 0x0000, 
+
+Making New PCBs: 
+Making New PCBs: 
 contents: PID: 25, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 26, state: ready, priority: 0, PC: 0x0000, 
 contents: PID: 27, state: ready, priority: 0, PC: 0x0000, 
 
+Making New PCBs: 
+contents: PID: 28, state: ready, priority: 0, PC: 0x0000, 
+
+Making New PCBs: 
+contents: PID: 29, state: ready, priority: 0, PC: 0x0000, 
+
+Iteration: 1
 MLFQ state at iteration end
 
-Q 0: Count=22: P13->P14->P15->P16->P17->P18->P2->P3->P4->P5->P6->P7->P8->P19->P20->P21->P22->P23->P24->P25->P26->P27->*
-Q 1: Count=2: P9->P11->*
+Q 0: Count=28: P2->P3->P4->P5->P6->P7->P8->P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->*
+Q 1: Count=1: P0->*
 Q 2: Count=0: 
 Q 3: Count=0: 
 Q 4: Count=0: 
@@ -470,38 +109,318 @@ Q14: Count=0:
 Q15: Count=0: 
 
 
-PCB PID 4, PRIORITY 0, PC 236
-PCB PID 11, PRIORITY 1, PC 568
-PCB PID 12, PRIORITY 0, PC 568
-PCB PID 18, PRIORITY 0, PC 0
 
-Going to be running next contents: PID: 12, state: running, priority: 0, PC: 0x0238, 
-Next highest priority PCB contents: PID: 13, state: ready, priority: 0, PC: 0x0000, 
+Current running process contents: PID: 1, state: running, priority: 0, PC: 0x0064, 
+Next highest priority PCB contents: PID: 2, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 2
+MLFQ state at iteration end
+
+Q 0: Count=27: P3->P4->P5->P6->P7->P8->P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->*
+Q 1: Count=2: P0->P1->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 2, state: running, priority: 0, PC: 0x00C8, 
+Next highest priority PCB contents: PID: 3, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 3
+====================== I/O TRAP START ================================
+At PCB: contents: PID: 2, state: running, priority: 0, PC: 0x010B, 
+I/O trap occurred at PC: 267
+====================== I/O TRAP END ==================================
+MLFQ state at iteration end
+
+Q 0: Count=26: P4->P5->P6->P7->P8->P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->*
+Q 1: Count=2: P0->P1->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 3, state: running, priority: 0, PC: 0x010A, 
+Next highest priority PCB contents: PID: 4, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 4
+MLFQ state at iteration end
+
+Q 0: Count=25: P5->P6->P7->P8->P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->*
+Q 1: Count=3: P0->P1->P3->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 4, state: running, priority: 0, PC: 0x012B, 
+Next highest priority PCB contents: PID: 5, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 5
+====================== I/O TRAP START ================================
+At PCB: contents: PID: 4, state: running, priority: 0, PC: 0x016A, 
+I/O trap occurred at PC: 362
+====================== I/O TRAP END ==================================
+MLFQ state at iteration end
+
+Q 0: Count=24: P6->P7->P8->P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->*
+Q 1: Count=3: P0->P1->P3->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 5, state: running, priority: 0, PC: 0x0169, 
+Next highest priority PCB contents: PID: 6, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 6
+====================== I/O INTERRUPT START ===========================
+====================== I/O INTERRUPT END =============================
+MLFQ state at iteration end
+
+Q 0: Count=25: P6->P7->P8->P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->*
+Q 1: Count=3: P0->P1->P3->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 5, state: running, priority: 0, PC: 0x016A, 
+Next highest priority PCB contents: PID: 6, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 7
+MLFQ state at iteration end
+
+Q 0: Count=24: P7->P8->P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->*
+Q 1: Count=4: P0->P1->P3->P5->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 6, state: running, priority: 0, PC: 0x018E, 
+Next highest priority PCB contents: PID: 7, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 8
+MLFQ state at iteration end
+
+Q 0: Count=23: P8->P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->*
+Q 1: Count=5: P0->P1->P3->P5->P6->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 7, state: running, priority: 0, PC: 0x01F2, 
+Next highest priority PCB contents: PID: 8, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 9
+MLFQ state at iteration end
+
+Q 0: Count=22: P9->P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->*
+Q 1: Count=6: P0->P1->P3->P5->P6->P7->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 8, state: running, priority: 0, PC: 0x0256, 
+Next highest priority PCB contents: PID: 9, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 10
+====================== I/O TRAP START ================================
+At PCB: contents: PID: 8, state: running, priority: 0, PC: 0x025F, 
+I/O trap occurred at PC: 607
+====================== I/O TRAP END ==================================
+MLFQ state at iteration end
+
+Q 0: Count=21: P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->*
+Q 1: Count=6: P0->P1->P3->P5->P6->P7->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 9, state: running, priority: 0, PC: 0x025E, 
+Next highest priority PCB contents: PID: 10, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 11
+====================== I/O INTERRUPT START ===========================
+====================== I/O INTERRUPT END =============================
+MLFQ state at iteration end
+
+Q 0: Count=22: P10->P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->*
+Q 1: Count=6: P0->P1->P3->P5->P6->P7->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 9, state: running, priority: 0, PC: 0x025F, 
+Next highest priority PCB contents: PID: 10, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 12
+MLFQ state at iteration end
+
+Q 0: Count=21: P11->P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->*
+Q 1: Count=7: P0->P1->P3->P5->P6->P7->P9->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 10, state: running, priority: 0, PC: 0x02B9, 
+Next highest priority PCB contents: PID: 11, state: ready, priority: 0, PC: 0x0000, 
 
 
 Iteration: 13
-
-IO TRAP 1: 801 424 940 934 
-IO TRAP 2: 847 786 222 779 
-
-IO TRAP 1: 1360 1747 394 2106 
-IO TRAP 2: 1421 36 100 1988 
-
-IO TRAP 1: 654 1942 47 1635 
-IO TRAP 2: 111 820 877 2227 
-
-IO TRAP 1: 878 237 1838 533 
-IO TRAP 2: 1065 702 406 213 
-Making New PCBs: 
-contents: PID: 28, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 29, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 30, state: ready, priority: 0, PC: 0x0000, 
-contents: PID: 31, state: ready, priority: 0, PC: 0x0000, 
-
 MLFQ state at iteration end
 
-Q 0: Count=25: P14->P15->P16->P17->P18->P2->P3->P4->P5->P6->P7->P8->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P30->P31->*
-Q 1: Count=3: P9->P11->P12->*
+Q 0: Count=20: P12->P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->*
+Q 1: Count=8: P0->P1->P3->P5->P6->P7->P9->P10->*
 Q 2: Count=0: 
 Q 3: Count=0: 
 Q 4: Count=0: 
@@ -518,13 +437,1348 @@ Q14: Count=0:
 Q15: Count=0: 
 
 
-PCB PID 4, PRIORITY 0, PC 236
-PCB PID 11, PRIORITY 1, PC 568
-PCB PID 12, PRIORITY 1, PC 603
-PCB PID 18, PRIORITY 0, PC 0
 
-Going to be running next contents: PID: 13, state: running, priority: 0, PC: 0x025B, 
+Current running process contents: PID: 11, state: running, priority: 0, PC: 0x031D, 
+Next highest priority PCB contents: PID: 12, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 14
+MLFQ state at iteration end
+
+Q 0: Count=19: P13->P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->*
+Q 1: Count=9: P0->P1->P3->P5->P6->P7->P9->P10->P11->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 12, state: running, priority: 0, PC: 0x0381, 
+Next highest priority PCB contents: PID: 13, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 15
+====================== I/O TRAP START ================================
+At PCB: contents: PID: 12, state: running, priority: 0, PC: 0x038B, 
+I/O trap occurred at PC: 907
+====================== I/O TRAP END ==================================
+MLFQ state at iteration end
+
+Q 0: Count=18: P14->P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->*
+Q 1: Count=9: P0->P1->P3->P5->P6->P7->P9->P10->P11->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 13, state: running, priority: 0, PC: 0x038A, 
 Next highest priority PCB contents: PID: 14, state: ready, priority: 0, PC: 0x0000, 
 
 
-Reached max PCBs, ending Scheduler.
+Iteration: 16
+MLFQ state at iteration end
+
+Q 0: Count=17: P15->P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->*
+Q 1: Count=10: P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 14, state: running, priority: 0, PC: 0x03E4, 
+Next highest priority PCB contents: PID: 15, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 17
+MLFQ state at iteration end
+
+Q 0: Count=16: P16->P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->*
+Q 1: Count=11: P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 15, state: running, priority: 0, PC: 0x0448, 
+Next highest priority PCB contents: PID: 16, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 18
+MLFQ state at iteration end
+
+Q 0: Count=15: P17->P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->*
+Q 1: Count=12: P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 16, state: running, priority: 0, PC: 0x04AC, 
+Next highest priority PCB contents: PID: 17, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 19
+MLFQ state at iteration end
+
+Q 0: Count=14: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->*
+Q 1: Count=13: P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0510, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 30, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 31, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 32, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 33, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=31: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0510, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 34, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=32: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0511, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 35, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 36, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 37, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 38, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=36: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0512, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 39, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 40, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=38: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0513, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 41, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 42, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 43, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 44, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=42: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0514, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 45, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 46, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 47, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=45: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0515, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 48, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 49, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 50, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 51, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=49: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0516, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 52, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 53, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 54, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 55, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=53: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0517, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 56, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 57, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 58, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 59, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=57: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0518, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 60, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 61, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 62, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=60: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0519, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 63, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=61: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x051A, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+MLFQ state at iteration end
+
+Q 0: Count=61: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x051B, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 64, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=62: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x051C, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 65, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 66, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 67, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=65: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x051D, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 68, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=66: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x051E, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 69, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 70, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 71, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=69: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x051F, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 72, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=70: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0520, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 73, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=71: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0521, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 74, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 75, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 76, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 77, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=75: P18->P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 17, state: running, priority: 0, PC: 0x0522, 
+Next highest priority PCB contents: PID: 18, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 20
+====================== I/O TRAP START ================================
+At PCB: contents: PID: 17, state: running, priority: 0, PC: 0x0523, 
+I/O trap occurred at PC: 1315
+====================== I/O TRAP END ==================================
+MLFQ state at iteration end
+
+Q 0: Count=74: P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 18, state: running, priority: 0, PC: 0x0522, 
+Next highest priority PCB contents: PID: 19, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 21
+====================== I/O INTERRUPT START ===========================
+====================== I/O INTERRUPT END =============================
+MLFQ state at iteration end
+
+Q 0: Count=75: P19->P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 18, state: running, priority: 0, PC: 0x0523, 
+Next highest priority PCB contents: PID: 19, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 22
+====================== I/O TRAP START ================================
+At PCB: contents: PID: 18, state: running, priority: 0, PC: 0x055F, 
+I/O trap occurred at PC: 1375
+====================== I/O TRAP END ==================================
+MLFQ state at iteration end
+
+Q 0: Count=74: P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 19, state: running, priority: 0, PC: 0x055E, 
+Next highest priority PCB contents: PID: 20, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 23
+====================== I/O INTERRUPT START ===========================
+====================== I/O INTERRUPT END =============================
+MLFQ state at iteration end
+
+Q 0: Count=75: P20->P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 19, state: running, priority: 0, PC: 0x055F, 
+Next highest priority PCB contents: PID: 20, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 24
+MLFQ state at iteration end
+
+Q 0: Count=74: P21->P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=1: P19->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 20, state: running, priority: 0, PC: 0x0572, 
+Next highest priority PCB contents: PID: 21, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 25
+MLFQ state at iteration end
+
+Q 0: Count=73: P22->P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=2: P19->P20->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 21, state: running, priority: 0, PC: 0x05D6, 
+Next highest priority PCB contents: PID: 22, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 26
+MLFQ state at iteration end
+
+Q 0: Count=72: P23->P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=3: P19->P20->P21->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 22, state: running, priority: 0, PC: 0x063A, 
+Next highest priority PCB contents: PID: 23, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 27
+MLFQ state at iteration end
+
+Q 0: Count=71: P24->P25->P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=4: P19->P20->P21->P22->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 23, state: running, priority: 0, PC: 0x069E, 
+Next highest priority PCB contents: PID: 24, state: ready, priority: 0, PC: 0x0000, 
+
+
+===== P23 set for termination =====
+Iteration: 28
+MLFQ state at iteration end
+
+Q 0: Count=69: P26->P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=5: P19->P20->P21->P22->P24->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 25, state: running, priority: 0, PC: 0x0056, 
+Next highest priority PCB contents: PID: 26, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 29
+MLFQ state at iteration end
+
+Q 0: Count=68: P27->P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=6: P19->P20->P21->P22->P24->P25->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 26, state: running, priority: 0, PC: 0x00BA, 
+Next highest priority PCB contents: PID: 27, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 30
+====================== I/O TRAP START ================================
+At PCB: contents: PID: 26, state: running, priority: 0, PC: 0x00CE, 
+I/O trap occurred at PC: 206
+====================== I/O TRAP END ==================================
+MLFQ state at iteration end
+
+Q 0: Count=67: P28->P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=6: P19->P20->P21->P22->P24->P25->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 27, state: running, priority: 0, PC: 0x00CD, 
+Next highest priority PCB contents: PID: 28, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 31
+MLFQ state at iteration end
+
+Q 0: Count=66: P29->P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=7: P19->P20->P21->P22->P24->P25->P27->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 28, state: running, priority: 0, PC: 0x011D, 
+Next highest priority PCB contents: PID: 29, state: ready, priority: 0, PC: 0x0000, 
+
+
+Iteration: 32
+====================== I/O TRAP START ================================
+At PCB: contents: PID: 28, state: running, priority: 0, PC: 0x013F, 
+I/O trap occurred at PC: 319
+====================== I/O TRAP END ==================================
+MLFQ state at iteration end
+
+Q 0: Count=65: P4->P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=7: P19->P20->P21->P22->P24->P25->P27->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 29, state: running, priority: 0, PC: 0x013E, 
+Next highest priority PCB contents: PID: 4, state: ready, priority: 0, PC: 0x016A, 
+
+
+Iteration: 33
+MLFQ state at iteration end
+
+Q 0: Count=64: P8->P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=8: P19->P20->P21->P22->P24->P25->P27->P29->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 4, state: running, priority: 0, PC: 0x0180, 
+Next highest priority PCB contents: PID: 8, state: ready, priority: 0, PC: 0x025F, 
+
+
+Iteration: 34
+====================== I/O TRAP START ================================
+At PCB: contents: PID: 4, state: running, priority: 0, PC: 0x01BB, 
+I/O trap occurred at PC: 443
+====================== I/O TRAP END ==================================
+MLFQ state at iteration end
+
+Q 0: Count=63: P0->P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=8: P19->P20->P21->P22->P24->P25->P27->P29->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 8, state: running, priority: 0, PC: 0x01BA, 
+Next highest priority PCB contents: PID: 0, state: ready, priority: 0, PC: 0x0065, 
+
+
+Iteration: 35
+MLFQ state at iteration end
+
+Q 0: Count=62: P1->P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=9: P19->P20->P21->P22->P24->P25->P27->P29->P8->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 0, state: running, priority: 0, PC: 0x01E3, 
+Next highest priority PCB contents: PID: 1, state: ready, priority: 0, PC: 0x00C9, 
+
+
+Iteration: 36
+MLFQ state at iteration end
+
+Q 0: Count=61: P3->P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=10: P19->P20->P21->P22->P24->P25->P27->P29->P8->P0->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 1, state: running, priority: 0, PC: 0x0247, 
+Next highest priority PCB contents: PID: 3, state: ready, priority: 0, PC: 0x012C, 
+
+
+Iteration: 37
+====================== I/O TRAP START ================================
+At PCB: contents: PID: 1, state: running, priority: 0, PC: 0x02A6, 
+I/O trap occurred at PC: 678
+====================== I/O TRAP END ==================================
+MLFQ state at iteration end
+
+Q 0: Count=60: P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->*
+Q 1: Count=10: P19->P20->P21->P22->P24->P25->P27->P29->P8->P0->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 3, state: running, priority: 0, PC: 0x02A5, 
+Next highest priority PCB contents: PID: 5, state: ready, priority: 0, PC: 0x018F, 
+
+
+Iteration: 38
+====================== I/O INTERRUPT START ===========================
+====================== I/O INTERRUPT END =============================
+MLFQ state at iteration end
+
+Q 0: Count=61: P5->P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->P1->*
+Q 1: Count=10: P19->P20->P21->P22->P24->P25->P27->P29->P8->P0->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 3, state: running, priority: 0, PC: 0x02A6, 
+Next highest priority PCB contents: PID: 5, state: ready, priority: 0, PC: 0x018F, 
+
+
+Iteration: 39
+MLFQ state at iteration end
+
+Q 0: Count=60: P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->P1->*
+Q 1: Count=11: P19->P20->P21->P22->P24->P25->P27->P29->P8->P0->P3->*
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 5, state: running, priority: 0, PC: 0x02AA, 
+Next highest priority PCB contents: PID: 6, state: ready, priority: 0, PC: 0x01F3, 
+
+
+
+RESETTING MLFQ
+Making New PCBs: 
+contents: PID: 78, state: ready, priority: 0, PC: 0x0000, 
+contents: PID: 79, state: ready, priority: 0, PC: 0x0000, 
+
+MLFQ state at iteration end
+
+Q 0: Count=73: P6->P7->P9->P10->P11->P13->P14->P15->P16->P30->P31->P32->P33->P34->P35->P36->P37->P38->P39->P40->P41->P42->P43->P44->P45->P46->P47->P48->P49->P50->P51->P52->P53->P54->P55->P56->P57->P58->P59->P60->P61->P62->P63->P64->P65->P66->P67->P68->P69->P70->P71->P72->P73->P74->P75->P76->P77->P17->P18->P1->P19->P20->P21->P22->P24->P25->P27->P29->P8->P0->P3->P78->P79->*
+Q 1: Count=0: 
+Q 2: Count=0: 
+Q 3: Count=0: 
+Q 4: Count=0: 
+Q 5: Count=0: 
+Q 6: Count=0: 
+Q 7: Count=0: 
+Q 8: Count=0: 
+Q 9: Count=0: 
+Q10: Count=0: 
+Q11: Count=0: 
+Q12: Count=0: 
+Q13: Count=0: 
+Q14: Count=0: 
+Q15: Count=0: 
+
+
+
+Current running process contents: PID: 5, state: running, priority: 0, PC: 0x02AA, 
+Next highest priority PCB contents: PID: 6, state: ready, priority: 0, PC: 0x01F3, 
+
+

@@ -1,7 +1,7 @@
 /*
  * Project 1
- *
- * Authors: Keegan Wantz, Carter Odem, Connor Lundberg
+ * Authors: Jasmine Dacones
+ * Previous Authors: Keegan Wantz, Carter Odem, Connor Lundberg
  * TCSS 422.
  */
  
@@ -118,25 +118,25 @@ void populateIOTrap(PCB pcb, int io_array) {
 	
 	
 	// TODO: Remove later. Just for testing purposes.
-	if (io_array == 1) {
-		printf("\n");
-		printf("IO TRAP 1: ");
+	// if (io_array == 1) {
+		// printf("\n");
+		// printf("IO TRAP 1: ");
 	
-		for (i = 0; i < 4; i++) {
-			printf("%d ", pcb->io_trap_1[i]);
-		}
-		printf("\n");
+		// for (i = 0; i < 4; i++) {
+			// printf("%d ", pcb->io_trap_1[i]);
+		// }
+		// printf("\n");
 		
-	} else {
+	// } else {
 		
-		printf("IO TRAP 2: ");
-		for (i = 0; i < 4; i++) {
-			printf("%d ", pcb->io_trap_2[i]);
-		}
+		// printf("IO TRAP 2: ");
+		// for (i = 0; i < 4; i++) {
+			// printf("%d ", pcb->io_trap_2[i]);
+		// }
 		
-		printf("\n");
+		// printf("\n");
 			
-	}
+	// }
 	
 
 	

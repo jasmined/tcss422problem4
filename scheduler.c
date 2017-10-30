@@ -1,6 +1,8 @@
 /*
 	10/12/2017
-	Authors: Connor Lundberg, Carter Odem, Jasmine Dacones
+	
+	Authors: Jasmine Dacones, David Foster
+	Previous authors: Connor Lundberg, Carter Odem
 	
 	In this project we will be making a simple Round Robin scheduling algorithm
 	that will take a single ReadyQueue of PCBs and run them through our scheduler.
@@ -12,25 +14,8 @@
 
 */
 
-
-/*
-	Notes:
-	- got I/O interrupt to stop occurring at every iteration. Forgot to add
-	  else statement for when the waiting queues were actually empty.
-	- Temporarily fixed SIGABRT error in PCB_destroy. Was being caused with
-	  freeing theScheduler->interrupted. Commented it out for now and it stopped
-	  the error. Dangerous, it might cause a memory leak without being freed.
-	- Moved terminate() in mainLoop() after all the interrupt checks. When it 
-      was above, it would cause a seg fault if during iteration 1, it created
-	  only ONE PCB, then terminated it. Thus, having nothing to dequeue next.
-	- Maybe adjust MAX PC to generate more interrupts
-*/
-
-
 #include "scheduler.h"
 #include <time.h>
-
-
 
 unsigned int sysstack;
 int switchCalls;
@@ -54,42 +39,6 @@ int io_trap_num = 0;
 	dispatcher, and eventually an IRET to return to the top of the loop and start
 	with the new process.
 */
-void timer () {
-	unsigned int pc = 0;
-	int totalProcesses = 0, iterationCount = 1;
-	Scheduler thisScheduler = schedulerConstructor();
-	for (;;) {
-		if (totalProcesses >= MAX_PCB_TOTAL) {
-			printf("Reached max PCBs, ending Scheduler.\r\n");
-			break;
-		}
-		printf("Iteration: %d\r\n", iterationCount);
-		if (!(iterationCount % RESET_COUNT)) {
-			printf("\r\nRESETTING MLFQ\r\n");
-			resetMLFQ(thisScheduler);
-		}
-		totalProcesses += makePCBList(thisScheduler);		
-		
-		if (totalProcesses > 1) {
-			pc = runProcess(pc, quantumSize);
-			sysstack = pc;
-			terminate(thisScheduler); 
-			pseudoISR(thisScheduler, TIMER_INT);
-			pc = thisScheduler->running->context->pc;
-		}
-		
-		printSchedulerState(thisScheduler);
-		iterationCount++;
-		
-	}
-	schedulerDeconstructor(thisScheduler);
-}
-
-// Newly constructed loop of timer()
-/*
-	
-
-*/
 void mainLoop() {
 	
 	int totalProcesses = 0, iterationCount = 0;
@@ -97,15 +46,14 @@ void mainLoop() {
 	totalProcesses += makePCBList(thisScheduler);
 	printSchedulerState(thisScheduler);
 
-
-	// for (;;) {
 		
-	while (iterationCount < 30) {
+	while (iterationCount < 40) {
 		
 		if (thisScheduler->running != NULL && totalProcesses > 1) {
 			sysstack = thisScheduler->running->context->pc++;
 			
-			// printf("ITERATION: %d, PC: %d\n", iterationCount, thisScheduler->running->context->pc);
+			
+			// printf("ITERATION: %d, PC: %d, MAX PC: %d\n", iterationCount, thisScheduler->running->context->pc, thisScheduler->running->max_pc);
 			
 			
 			if (checkTimerInt() == 1) {
@@ -118,47 +66,25 @@ void mainLoop() {
 		
 			if (checkIoInt(thisScheduler) == 1) {
 				printf("Iteration: %d\r\n", iterationCount);
-				printf("====================== I/O INTERRUPT START ======================\r\n");
+				printf("====================== I/O INTERRUPT START ===========================\r\n");
 				
 				pseudoISR(thisScheduler, IO_INT);
-				printf("====================== I/O INTERRUPT END ======================\r\n");
+				printf("====================== I/O INTERRUPT END =============================\r\n");
 				printSchedulerState(thisScheduler);
 				iterationCount++;
 			}
 			
 			if (checkIoTrap(thisScheduler->running) > 0) {
 				printf("Iteration: %d\r\n", iterationCount);
-				printf("====================== I/O TRAP START ======================\r\n");
+				printf("====================== I/O TRAP START ================================\r\n");
 				printf("At PCB: ");
 				toStringPCB(thisScheduler->running, 0);
 				printf("\r\n");
-				
-				
-				// working
-				// printf("TRAP 1\n");
-				// if (thisScheduler->running->io_trap_1[0] > 0) {
-					// for (int i = 0; i < 4; i ++) {
-						// printf("%d ", thisScheduler->running->io_trap_1[i]);
-						
-					// }	
-				// }
-				
-				// printf("TRAP 2\n");
-				// if (thisScheduler->running->io_trap_2[0] > 0) {
-					// for (int i = 0; i < 4; i ++) {
-						// printf("%d ", thisScheduler->running->io_trap_2[i]);
-						
-					// }	
-				// }
-				
-				
 				printf("I/O trap occurred at PC: %d\r\n", thisScheduler->running->context->pc);
-				// printf("Request waiting timer: %d\n", thisScheduler->running->waiting_timer);
-				// printf("Current timer: %d\n", io_timer);
 				pseudoISR(thisScheduler, IO_TRAP);
-				printf("====================== I/O TRAP END ======================\r\n");
+				printf("====================== I/O TRAP END ==================================\r\n");
 				printSchedulerState(thisScheduler);
-				//iterationCount++;
+				iterationCount++;
 			}
 			
 			if (thisScheduler->running->context->pc == thisScheduler->running->max_pc) {
@@ -167,11 +93,10 @@ void mainLoop() {
 			}
 			
 		} else {
-			//iterationCount++;
+			iterationCount++;
 
 		}
 		
-		// keep this here
 		terminate(thisScheduler);
 
 		if ((iterationCount % RESET_COUNT) == 0) {
@@ -236,7 +161,6 @@ int makePCBList (Scheduler theScheduler) {
 	return newPCBCount;
 }
 
-// working if it runs long
 /*
 	Checks to see if the quantum count has reached the maximum
 	value. If so, the quantum count is set back to 0 and throws a
@@ -264,30 +188,22 @@ int checkTimerInt() {
 int checkIoTrap(PCB running) {
 	
 	int i = 0;
-
-
-	// printf("PC IN IO TRAP: %d\n", running->context->pc);
 	
 	for (i; i < TRAP_COUNT; i++) {
 		
 		if (running->context->pc == running->io_trap_1[i]) {
-			// printf("TRAP 1: %d", running->io_trap_1[i]);
-			// printf("in io trap\n");
 			io_trap_num = 1;
 			return 1;
 			break;
 		}
 		
 		if (running->context->pc == running->io_trap_2[i]) {
-			// printf("TRAP 2: %d", running->io_trap_2[i]);
-			// printf("in io trap\n");
 			io_trap_num = 2;
 			return 2;
 			break;
 		}
 	}
 	
-	// io_trap_num = 0;
 	return 0;
 }
 
@@ -300,13 +216,13 @@ int checkIoTrap(PCB running) {
 int checkIoInt(Scheduler theScheduler) {
 	
 	if (!q_is_empty(theScheduler->waiting_io_1)) {
-		printf("Waiting timer: %d\n", q_peek(theScheduler->waiting_io_1)->waiting_timer);
+		
 		if (q_peek(theScheduler->waiting_io_1)->waiting_timer == io_timer) {
 			
 			return 1;
 		
 		} else {
-			printf("IO timer: %d\n", io_timer);
+			
 			io_timer++;
 			return 0;
 
@@ -317,12 +233,12 @@ int checkIoInt(Scheduler theScheduler) {
 	
 	
 	if (!q_is_empty(theScheduler->waiting_io_2)) {
-		printf("Waiting timer: %d\n", q_peek(theScheduler->waiting_io_2)->waiting_timer);
+	
 		if (q_peek(theScheduler->waiting_io_2)->waiting_timer == io_timer) {
 			io_timer = 0;
 			return 1;
 		} else {
-			printf("IO timer: %d\n", io_timer);
+			
 			io_timer++;
 			
 			return 0;
@@ -355,12 +271,11 @@ unsigned int runProcess (unsigned int pc, int quantumSize) {
 */
 void terminate(Scheduler theScheduler) {
 	
+	// printf("TERMINATE: %d\n", theScheduler->running->terminate);
+	// printf("TERM COUNT: %d\n", theScheduler->running->term_count);
+	
 	if (theScheduler->running != NULL && theScheduler->running->terminate > 0
 		&& theScheduler->running->term_count == theScheduler->running->terminate) {
-			
-		printf("\nterm count: %d\n", theScheduler->running->term_count);
-		printf("\nmax termination: %d\n", theScheduler->running->terminate);
-		printf("\nPID: %d", theScheduler->running->pid);
 		
 		printf("===== P%d set for termination =====\n", theScheduler->running->pid);
 		theScheduler->running->state = STATE_HALT;
@@ -508,10 +423,8 @@ void scheduling (int interrupt_type, Scheduler theScheduler) {
 			pcb->state = STATE_READY;
 			pq_enqueue(theScheduler->ready, pcb);
 		}
-		
-		// taking out these generates io interrupts for me
+
 		theScheduler->running = theScheduler->interrupted;
-		// theScheduler->running = pq_dequeue(theScheduler->ready);
 		theScheduler->running->state = STATE_RUNNING;
 		sysstack = theScheduler->running->context->pc;
 	}
@@ -602,27 +515,30 @@ Scheduler schedulerConstructor () {
 	doesn't crash).
 */
 void schedulerDeconstructor (Scheduler theScheduler) {
-	// q_destroy(theScheduler->created);
-	// q_destroy(theScheduler->killed);
-	// q_destroy(theScheduler->blocked);
-	// q_destroy(theScheduler->waiting_io_1);
-	// q_destroy(theScheduler->waiting_io_2);
-	// pq_destroy(theScheduler->ready);
-	// // if (theScheduler->running != NULL) {
-	// 	PCB_destroy(theScheduler->running);
-	// // }
-	
-	// if (theScheduler->interrupted != NULL) {
-	// 	// PCB_destroy(theScheduler->interrupted);
+	q_destroy(theScheduler->created);
+	q_destroy(theScheduler->killed);
+	q_destroy(theScheduler->blocked);
+	q_destroy(theScheduler->waiting_io_1);
+	q_destroy(theScheduler->waiting_io_2);
+	pq_destroy(theScheduler->ready);
+	// if (theScheduler->running != NULL) {
+		PCB_destroy(theScheduler->running);
 	// }
+	
+	if (theScheduler->interrupted != NULL) {
+		// PCB_destroy(theScheduler->interrupted);
+	}
 	
 	free (theScheduler);
 }
 
 
 void main () {
-	// FILE *f;
-    // f = freopen("mlfq-history.txt", "w", stdout);
+	FILE *f;
+    f = freopen("mlfq-history.txt", "w", stdout);
+	
+	printf("Jasmine Dacones, David Foster\r\n");
+	printf("TCSS 422, Problem 4\r\n\r\n");
 	
 	setvbuf(stdout, NULL, _IONBF, 0);
 	time_t t;
